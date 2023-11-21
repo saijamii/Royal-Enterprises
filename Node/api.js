@@ -30,8 +30,6 @@ const getInventory = async () => {
     return result.slice(0, 100);
   } catch (error) {
     console.log(`ERROR : ${error}`);
-  } finally {
-    client.close();
   }
 };
 
