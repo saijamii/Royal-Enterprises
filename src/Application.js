@@ -28,10 +28,6 @@ export default function Application() {
 
   const colums = [
     {
-      title: "ID",
-      dataIndex: "_id",
-    },
-    {
       title: "First Name",
       dataIndex: "firstName",
 
@@ -106,7 +102,7 @@ export default function Application() {
                     </Popconfirm>
                   </Button>
                 </Col>
-                <Col span={24}>
+                {/* <Col span={24}>
                   <Button
                     className="popoveroptions"
                     style={{
@@ -119,7 +115,7 @@ export default function Application() {
                       <DeleteOutlined className="mddelete" /> Edit
                     </span>
                   </Button>
-                </Col>
+                </Col> */}
               </Row>
             }
           >
