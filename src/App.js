@@ -101,6 +101,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<Application />} />
+            <Route exact path="/Royal-Enterprises" element={<Application />} />
             <Route path="/addProduct" element={<AddProduct />} />
             <Route path="/getProductDetail/:id" element={<ProductDetail />} />
           </Routes>
