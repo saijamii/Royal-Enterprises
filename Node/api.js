@@ -61,6 +61,21 @@ const addProducts = async (dataJson) => {
   }
 };
 
+app.delete("/deleteProduct/:id", async (req, res) => {
+  const id = req.params.id;
+  const success = await deleteProductById(id);
+  if (success) {
+    res.json({ message: "User Deleted Successfully" });
+  } else {
+    res.status(404).json({ message: "User not found" });
+  }
+});
+
+const deleteProductById = async (id) => {
+  const result = await collection.deleteOne({ _id: new ObjectId(id) });
+  return result.deletedCount > 0;
+};
+
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);

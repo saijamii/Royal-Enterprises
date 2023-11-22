@@ -9,9 +9,22 @@ import {
 export default function Application() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
+
   useEffect(() => {
     getInventoryData();
   }, []);
+
+  const handleDeleteProduct = async (id) => {
+    try {
+      const response = await axios.delete(`/deleteProduct/${id}`);
+      console.log(response, "response");
+      alert("Delete successful");
+      getInventoryData();
+    } catch (error) {
+      alert("Something went wrong");
+      console.error("There was an error!", error);
+    }
+  };
 
   const colums = [
     {
@@ -83,6 +96,9 @@ export default function Application() {
                       okText="Yes"
                       cancelText="No"
                       showArrow={true}
+                      onConfirm={() => {
+                        handleDeleteProduct(_id);
+                      }}
                     >
                       <span>
                         <DeleteOutlined className="mddelete" /> Delete
