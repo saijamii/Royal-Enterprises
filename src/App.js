@@ -4,6 +4,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Application from "./Application";
 import "./App.css";
 import AddProduct from "./AddProduct";
+import ProductDetail from "./ProductDetail";
 
 // const { Header } = Layout;
 
@@ -101,6 +102,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Application />} />
             <Route path="/addProduct" element={<AddProduct />} />
+            <Route path="/getProductDetail/:id" element={<ProductDetail />} />
           </Routes>
         </BrowserRouter>
       </>

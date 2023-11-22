@@ -25,7 +25,7 @@ export default function Application() {
       onCell: (record) => ({
         onClick: () =>
           // eslint-disable-next-line no-useless-concat
-          (window.location.href = "/getUserDetails/" + `${record?._id}`),
+          (window.location.href = "/getProductDetail/" + `${record?._id}`),
       }),
       render: (firstName) => {
         return (
