@@ -165,10 +165,10 @@ export default function Application() {
                     color: "#fff",
                     border: "#fe6101",
                   }}
-                  onClick={() => (window.location.href = "/addUser")}
+                  onClick={() => (window.location.href = "/addProduct")}
                 >
                   <PlusOutlined />
-                  Add User
+                  Add Product
                 </Button>
               </Col>
             </Row>

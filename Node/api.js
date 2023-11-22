@@ -14,6 +14,7 @@ const dataBase = client.db("royal");
 const collection = dataBase.collection("products");
 
 const app = express();
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send(`API is Running on port ${PORT}`);
