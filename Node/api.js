@@ -1,6 +1,6 @@
 const express = require("express");
 const fs = require("fs");
-const csv = require("csv-parser");
+const parse = require("csv-parser");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const uri = `mongodb+srv://saijami:EcUpT3Et6dpojJz3@atlascluster.iotmmxp.mongodb.net/?retryWrites=true&w=majority`;
@@ -80,23 +80,32 @@ const deleteProductById = async (id) => {
 
 const readCSVFile = (filePath) => {
   const data = [];
+  const finalData = [];
   fs.createReadStream(filePath)
-    .pipe(csv())
-    .on("data", (row) => {
-      const product = {
-        sku: row.sku,
-        productName: row.productName,
-        description: row.description,
-        brand: row.brand,
-        category: row.category,
-        finish: row.finish,
-        cost: row.cost,
-        price: row.price,
-        qty: row.qty,
-        discontinued: row.discontinued,
-      };
-      data.push(product);
-      console.log(product);
+    .pipe(parse())
+    .on("row", (row) => {
+      data.push({
+        sku: row[0],
+        productName: row[1],
+        description: row[2],
+        brand: row[3],
+        category: row[4],
+        finish: row[5],
+        cost: row[6],
+        price: row[7],
+        qty: row[8],
+        discontinued: row[9],
+      });
+    })
+    .on("data", async (query) => {
+      finalData.push(query);
+    })
+    .on("end", async () => {
+      console.log(finalData, "data");
+      await collection.insertMany(finalData);
+      console.log(
+        "CSV file successfully processed and data inserted into MongoDB"
+      );
     })
     .on("error", (error) => {
       console.log(`Error reading CSV file: ${error}`);
