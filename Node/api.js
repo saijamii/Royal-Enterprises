@@ -1,4 +1,6 @@
 const express = require("express");
+const fs = require("fs");
+const csv = require("csv-parser");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const uri = `mongodb+srv://saijami:EcUpT3Et6dpojJz3@atlascluster.iotmmxp.mongodb.net/?retryWrites=true&w=majority`;
@@ -75,6 +77,34 @@ const deleteProductById = async (id) => {
   const result = await collection.deleteOne({ _id: new ObjectId(id) });
   return result.deletedCount > 0;
 };
+
+const readCSVFile = (filePath) => {
+  const data = [];
+  fs.createReadStream(filePath)
+    .pipe(csv())
+    .on("data", (row) => {
+      const product = {
+        sku: row.sku,
+        productName: row.productName,
+        description: row.description,
+        brand: row.brand,
+        category: row.category,
+        finish: row.finish,
+        cost: row.cost,
+        price: row.price,
+        qty: row.qty,
+        discontinued: row.discontinued,
+      };
+      data.push(product);
+      console.log(product);
+    })
+    .on("error", (error) => {
+      console.log(`Error reading CSV file: ${error}`);
+    });
+};
+
+const csvFilePath = "../CSV/BL_Inventory_Products.csv";
+readCSVFile(csvFilePath);
 
 const PORT = 5000;
 app.listen(PORT, () => {
