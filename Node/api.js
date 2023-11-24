@@ -102,10 +102,10 @@ const readCSVFile = (filePath) => {
     })
     .on("end", async () => {
       console.log(finalData, "data");
-      await collection.insertMany(finalData);
-      console.log(
-        "CSV file successfully processed and data inserted into MongoDB"
-      );
+      // await collection.insertMany(finalData);
+      // console.log(
+      //   "CSV file successfully processed and data inserted into MongoDB"
+      // );
     })
     .on("error", (error) => {
       console.log(`Error reading CSV file: ${error}`);
