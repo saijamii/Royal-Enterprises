@@ -214,6 +214,7 @@ export default function Application() {
             : users
         }
         columns={colums}
+        style={{ overflow: "auto" }}
       />
     </div>
   );

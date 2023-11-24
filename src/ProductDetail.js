@@ -28,10 +28,10 @@ export default function ProductDetail(props) {
   return (
     <Col span={24} style={{ marginTop: "80px" }}>
       <Row justify={"space-between"}>
-        <Col span={12} offset={8} style={{ justifyContent: "center" }}>
+        <Col span={12} offset={1} style={{ justifyContent: "center" }}>
           <Card
             style={{
-              width: "50vh",
+              width: "40vh",
               marginTop: "12px",
               backgroundColor: "#ffa700",
             }}
