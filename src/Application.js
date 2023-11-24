@@ -28,6 +28,18 @@ export default function Application() {
 
   const colums = [
     {
+      title: "productName",
+      dataIndex: "productName",
+    },
+    {
+      title: "brand",
+      dataIndex: "brand",
+    },
+    {
+      title: "finish",
+      dataIndex: "finish",
+    },
+    {
       title: "First Name",
       dataIndex: "firstName",
 
