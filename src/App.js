@@ -1,6 +1,6 @@
 import React from "react";
 // import { Layout, Button, Col, Row } from "antd";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import Application from "./Application";
 import "./App.css";
 import AddProduct from "./AddProduct";
@@ -98,18 +98,14 @@ function App() {
           </Col>
         </Header> */}
 
-        <BrowserRouter>
+        <Router>
           <Routes>
-            <Route exact path="/" element={<Application />} />
-            <Route
-              exact
-              path="/Inventory-Mangement"
-              element={<Application />}
-            />
+            <Route path="/" element={<Application />} />
+            <Route path="/Inventory-Mangement" element={<Application />} />
             <Route path="/addProduct" element={<AddProduct />} />
             <Route path="/getProductDetail/:id" element={<ProductDetail />} />
           </Routes>
-        </BrowserRouter>
+        </Router>
       </>
     </div>
   );
