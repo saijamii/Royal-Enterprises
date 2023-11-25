@@ -101,7 +101,11 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<Application />} />
-            <Route exact path="/home" element={<Application />} />
+            <Route
+              exact
+              path="/Inventory-Mangement"
+              element={<Application />}
+            />
             <Route path="/addProduct" element={<AddProduct />} />
             <Route path="/getProductDetail/:id" element={<ProductDetail />} />
           </Routes>
