@@ -112,8 +112,40 @@ const readCSVFile = (filePath) => {
     });
 };
 
-const csvFilePath = "../CSV/BL_Inventory_Products.csv";
-readCSVFile(csvFilePath);
+// const csvFilePath = "../CSV/BL_Inventory_Products.csv";
+// readCSVFile(csvFilePath);
+
+const readMoviesCSV = async (filePath) => {
+  const Moviesdata = [];
+
+  try {
+    await client.connect();
+    const existingData = await getInventory(collection);
+    fs.createReadStream(filePath)
+      .pipe(parse())
+      .on("data", async (data) => {
+        const isDataExist = existingData.some((e) => e.movie === data.moive);
+        if (!isDataExist) {
+          Moviesdata.push(data);
+          await collection.insertOne(data);
+          await console.log(
+            `${data?.title} with ${data._id} data inserted into MongoDB`
+          );
+        }
+      })
+      .on("end", async () => {
+        console.log(Moviesdata, "Moviesdata");
+      })
+      .on("errpr", (error) => {
+        console.log(`Error reading CSV file: ${error}`);
+      });
+  } catch (error) {
+    console.log(`Error connecting to MongoDB: ${error}`);
+  }
+};
+
+const moivesPath = "../CSV/moviesDB.csv";
+readMoviesCSV(moivesPath);
 
 const PORT = 5000;
 app.listen(PORT, () => {
