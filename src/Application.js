@@ -6,6 +6,7 @@ import {
   DeleteOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
+
 export default function Application() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
@@ -137,6 +138,27 @@ export default function Application() {
       },
     },
   ];
+  
+  console.log(colums)
+
+  const moiveColumns = [
+    {
+      title: "movie",
+      dataIndex: "movie",
+    },
+    {
+      title: "title",
+      dataIndex: "title",
+    },
+    {
+      title: "genres",
+      dataIndex: "genres",
+    },
+    {
+      title: "year",
+      dataIndex: "year",
+    },
+  ];
 
   const getInventoryData = async () => {
     try {
@@ -220,7 +242,7 @@ export default function Application() {
               )
             : users
         }
-        columns={colums}
+        columns={moiveColumns}
         style={{ overflow: "auto" }}
       />
     </div>
