@@ -189,50 +189,64 @@ export default function Application() {
       key: "_id",
       render: (_id) => {
         return (
-          <Popover
-            placement="left"
-            trigger="hover"
-            content={
-              <Row className="popovergrid">
-                <Col span={24}>
-                  <Button
-                    className="popoveroptions"
-                    style={{ backgroundColor: "red", color: "#fff" }}
+          <Row
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <div style={{ padding: "5px", fontSize: "25px" }}>
+              <Popover
+                placement="left"
+                trigger="hover"
+                content={
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
                   >
+                    {" "}
+                    <Button
+                      style={{ height: "35px" }}
+                      className="edit-btn"
+                      onClick={() => {
+                        window.location.pathname = "/editProduct";
+                      }}
+                    >
+                      <EllipsisOutlined />
+                      Edit
+                    </Button>
                     <Popconfirm
-                      title="Are you sure？"
+                      placement="left"
+                      title="Are you sure?"
                       okText="Yes"
                       cancelText="No"
-                      showArrow={true}
                       onConfirm={() => {
                         handleDeleteMoiveRecord(_id);
                       }}
                     >
-                      <span>
-                        <DeleteOutlined className="mddelete" /> Delete
-                      </span>
+                      <Button
+                        className="delete-header-btn"
+                        style={{
+                          width: "100%",
+                          marginTop: "3px",
+                        }}
+                        icon={<DeleteOutlined />}
+                      >
+                        Delete
+                      </Button>
                     </Popconfirm>
-                  </Button>
-                </Col>
-                {/* <Col span={24}>
-                  <Button
-                    className="popoveroptions"
-                    style={{
-                      backgroundColor: "green",
-                      color: "#fff",
-                      width: "90px",
-                    }}
-                  >
-                    <span>
-                      <DeleteOutlined className="mddelete" /> Edit
-                    </span>
-                  </Button>
-                </Col> */}
-              </Row>
-            }
-          >
-            <EllipsisOutlined style={{ fontSize: "25px", cursor: "pointer" }} />
-          </Popover>
+                  </div>
+                }
+              >
+                <EllipsisOutlined style={{ fontSize: "30px", color: "grey" }} />
+              </Popover>
+            </div>
+          </Row>
         );
       },
     },
