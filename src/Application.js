@@ -6,10 +6,12 @@ import {
   DeleteOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
+import Loading from "./Common/Loading";
 
 export default function Application() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getInventoryData();
@@ -162,13 +164,16 @@ export default function Application() {
 
   const getInventoryData = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get(
         "https://node-kl1g.onrender.com/inventoryProducts"
       );
       setUsers(data);
+      setLoading(false);
       console.log(data, "data");
     } catch (error) {
       console.error("Error fetching inventory data:", error);
+      setLoading(false);
     }
   };
 
@@ -245,6 +250,7 @@ export default function Application() {
         columns={moiveColumns}
         style={{ overflow: "auto" }}
       />
+      <Loading enableLoading={loading} />
     </div>
   );
 }
