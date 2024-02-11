@@ -139,10 +139,17 @@ export default function Application() {
   ];
 
   const getInventoryData = async () => {
-    const { data } = await axios.get("/inventoryProducts");
-    setUsers(data);
-    console.log(data, "data");
+    try {
+      const { data } = await axios.get(
+        "https://node-kl1g.onrender.com/inventoryProducts"
+      );
+      setUsers(data);
+      console.log(data, "data");
+    } catch (error) {
+      console.error("Error fetching inventory data:", error);
+    }
   };
+
   return (
     <div style={{ marginTop: "80px" }}>
       <Col span={24} className="fireFox">
