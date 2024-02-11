@@ -213,9 +213,9 @@ export default function Application() {
                     <Button
                       style={{ height: "35px" }}
                       className="edit-btn"
-                      onClick={() => {
-                        window.location.pathname = "/editProduct";
-                      }}
+                      onClick={() =>
+                        (window.location.href = `/getProductDetail/${_id}`)
+                      }
                     >
                       <EllipsisOutlined />
                       Edit
