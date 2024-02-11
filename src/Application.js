@@ -29,6 +29,29 @@ export default function Application() {
     }
   };
 
+  const handleDeleteMoiveRecord = async (id) => {
+    console.log(id, "id");
+    try {
+      setLoading(true);
+      const response = await axios.delete(
+        `https://node-kl1g.onrender.com/deleteProduct/${id}`
+      );
+      console.log(response, "response");
+      if (response.data.message === "User Deleted Successfully") {
+        alert("Delete successful");
+        setLoading(false);
+        getInventoryData();
+      } else {
+        alert("Something went wrong: " + response.data.message);
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      alert("Something went wrong");
+      console.error("There was an error!", error);
+    }
+  };
+
   const colums = [
     {
       title: "productName",
@@ -140,8 +163,8 @@ export default function Application() {
       },
     },
   ];
-  
-  console.log(colums)
+
+  console.log(colums);
 
   const moiveColumns = [
     {
@@ -159,6 +182,59 @@ export default function Application() {
     {
       title: "year",
       dataIndex: "year",
+    },
+    {
+      width: "60px",
+      dataIndex: "_id",
+      key: "_id",
+      render: (_id) => {
+        return (
+          <Popover
+            placement="left"
+            trigger="hover"
+            content={
+              <Row className="popovergrid">
+                <Col span={24}>
+                  <Button
+                    className="popoveroptions"
+                    style={{ backgroundColor: "red", color: "#fff" }}
+                  >
+                    <Popconfirm
+                      title="Are you sure？"
+                      okText="Yes"
+                      cancelText="No"
+                      showArrow={true}
+                      onConfirm={() => {
+                        handleDeleteMoiveRecord(_id);
+                      }}
+                    >
+                      <span>
+                        <DeleteOutlined className="mddelete" /> Delete
+                      </span>
+                    </Popconfirm>
+                  </Button>
+                </Col>
+                {/* <Col span={24}>
+                  <Button
+                    className="popoveroptions"
+                    style={{
+                      backgroundColor: "green",
+                      color: "#fff",
+                      width: "90px",
+                    }}
+                  >
+                    <span>
+                      <DeleteOutlined className="mddelete" /> Edit
+                    </span>
+                  </Button>
+                </Col> */}
+              </Row>
+            }
+          >
+            <EllipsisOutlined style={{ fontSize: "25px", cursor: "pointer" }} />
+          </Popover>
+        );
+      },
     },
   ];
 
