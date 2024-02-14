@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Col, Card, Row, Button, Form, Input, notification } from "antd";
 import Loading from "./Common/Loading";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import axios from "axios";
 import "./login.css"; // Import your custom CSS for styling
 
 const Login = (props) => {
@@ -9,14 +10,42 @@ const Login = (props) => {
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values) => {
-    console.log(values,"valeus")
-    return
+    console.log(values, "values");
+
     try {
       setLoading(true);
-      // Your login logic here
-    } catch (err) {
-      console.log("Login Error:", err);
+      const response = await axios.post(
+        "https://node-kl1g.onrender.com/sigin",
+        values
+      );
+
+      if (response.data.message === "success") {
+        notification.success({
+          placement: "top",
+          message: "Sign in successful!",
+        });
+        const token = response.data.token;
+        console.log(token, "token");
+      } else if (response.data.message === "Invalid username or password.") {
+        notification.error({
+          placement: "top",
+          message: "Invalid username or password!",
+        });
+      } else {
+        setLoading(false);
+        notification["error"]({
+          placement: "top",
+          message: "Something went wrong!",
+        });
+      }
       setLoading(false);
+    } catch (error) {
+      console.error("Sign in Error:", error);
+      setLoading(false);
+      notification.error({
+        placement: "top",
+        message: "Something went wrong!",
+      });
     }
   };
 
