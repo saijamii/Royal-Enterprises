@@ -26,6 +26,9 @@ const Login = (props) => {
         });
         const token = response.data.token;
         console.log(token, "token");
+        setTimeout(() => {
+          window.location.href = "/home";
+        }, 1200);
       } else if (response.data.message === "Invalid username or password.") {
         notification.error({
           placement: "top",
