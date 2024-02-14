@@ -62,9 +62,16 @@ const Login = (props) => {
   };
 
   return (
-    <Row justify="center" align="middle" className="login-container">
+    <Row justify="center" align="middle" className="login-container bodyy">
       <Col xs={20} sm={16} md={12} lg={8} xl={6}>
-        <Card className="login-card">
+        <Card
+          className="login-card"
+          style={{
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 8, 0.2)",
+            backgroundColor: "#c7c8cc",
+            border: "transparent",
+          }}
+        >
           <h1 className="login-title">Welcome back!</h1>
           <Form
             form={form}
