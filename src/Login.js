@@ -25,6 +25,7 @@ const Login = (props) => {
           message: "Sign in successful!",
         });
         const token = response.data.token;
+        localStorage.setItem("token", token);
         console.log(token, "token");
         setTimeout(() => {
           window.location.href = "/home";
