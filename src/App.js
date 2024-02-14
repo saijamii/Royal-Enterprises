@@ -1,7 +1,7 @@
 import React from "react";
 // import { Layout, Button, Col, Row } from "antd";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
-// import Application from "./Application";
+import Application from "./Application";
 import "./App.css";
 import AddProduct from "./AddProduct";
 import ProductDetail from "./ProductDetail";
@@ -103,6 +103,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/Inventory-Mangement" element={<Login />} />
+            <Route path="/home" element={<Application />} />
             <Route path="/addProduct" element={<AddProduct />} />
             <Route path="/getProductDetail/:id" element={<ProductDetail />} />
           </Routes>
