@@ -12,10 +12,17 @@ export default function Application() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     getInventoryData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    if (!token) {
+      throw new Error("Token not found.");
+    }
+  }, [token]);
 
   const handleDeleteProduct = async (id) => {
     try {
@@ -256,7 +263,12 @@ export default function Application() {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        "https://node-kl1g.onrender.com/inventoryProducts"
+        "https://node-kl1g.onrender.com/inventoryProducts",
+        {
+          headers: {
+            authorization: token,
+          },
+        }
       );
       setUsers(data);
       setLoading(false);
