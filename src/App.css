@@ -172,3 +172,202 @@
     background-position: 0% 50%;
   }
 }
+
+.loading-div {
+  width: 240px;
+  height: 240px;
+  background-color: #00000073;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.background-transparent {
+  background-color: transparent !important;
+}
+.please-wait {
+  display: flex;
+  justify-content: center !important;
+}
+
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sider-menu {
+  background-color: #003c75;
+  max-width: 200px;
+  color: #ffffff;
+  margin-top: 2.81rem;
+  position: fixed;
+}
+.ant-menu-submenu-title {
+  color: #fff;
+}
+.buttons {
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-top: 20px;
+  padding: 1rem;
+  background-color: rgb(53, 201, 217);
+}
+.form {
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-top: 20px;
+  padding: 0.2rem;
+  background-color: rgba(53, 154, 217, 0.777);
+}
+.inputForm {
+  background-color: #818;
+}
+.objects {
+  padding: 3rem;
+}
+
+.user-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.user-details-card {
+  width: 50%;
+  margin: auto;
+}
+/* .lightMode {
+  background-color: #f2f2f2;
+  height: 100vh;
+  overflow: hidden;
+}
+.darkMode {
+  background-color: #798086;
+  height: 100vh;
+  overflow: hidden;
+} */
+
+.body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+      circle at top left,
+      transparent 9%,
+      #797979 10%,
+      #797979 15%,
+      transparent 16%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      transparent 9%,
+      #797979 10%,
+      #797979 15%,
+      transparent 16%
+    ),
+    radial-gradient(
+      circle at top right,
+      transparent 9%,
+      #797979 10%,
+      #797979 15%,
+      transparent 16%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      transparent 9%,
+      #797979 10%,
+      #797979 15%,
+      transparent 16%
+    ),
+    radial-gradient(circle, transparent 25%, #000000 26%),
+    linear-gradient(
+      45deg,
+      transparent 46%,
+      #797979 47%,
+      #797979 52%,
+      transparent 53%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 46%,
+      #797979 47%,
+      #797979 52%,
+      transparent 53%
+    );
+  background-size: 6em 6em;
+  background-color: #000000;
+  opacity: 1;
+}
+.bodyy {
+  height: 100%;
+  font-family: "montserrat";
+  background-image: linear-gradient(
+    125deg,
+    #feda75,
+    #fa7e1e,
+    #27ae60,
+    #2c3e50,
+    #d62976,
+    #2980b9,
+    #962fbf,
+    #4f5bd5,
+    #e74c3c
+  );
+  background-size: 400%;
+  animation: bganimation 20s infinite;
+}
+
+@keyframes bganimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+

@@ -5,6 +5,8 @@ import Application from "./Application";
 import "./App.css";
 import AddProduct from "./AddProduct";
 import ProductDetail from "./ProductDetail";
+import Login from "./Login";
+import Register from "./Register";
 
 // const { Header } = Layout;
 
@@ -100,8 +102,10 @@ function App() {
 
         <Router>
           <Routes>
-            <Route path="/" element={<Application />} />
-            <Route path="/Inventory-Mangement" element={<Application />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/Inventory-Mangement" element={<Login />} />
+            <Route path="/signup" element={<Register />} />
+            <Route path="/home" element={<Application />} />
             <Route path="/addProduct" element={<AddProduct />} />
             <Route path="/getProductDetail/:id" element={<ProductDetail />} />
           </Routes>

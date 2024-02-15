@@ -1,27 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Button, Divider, Card } from "antd";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function ProductDetail(props) {
+  console.log(props, "props");
   const [product, setProduct] = useState({});
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(false);
 
   console.log(product, "product");
-
-  const { id } = useParams();
+  // const { id } = useParams();
 
   useEffect(() => {
-    console.log(id, "id");
-    axios
-      .get(`/getProductDetail/${id}`)
-      .then((response) => {
+    const fetchProduct = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          `https://node-kl1g.onrender.com/getProductDetail/${
+            window.location.pathname.split("/")[2]
+          }`
+        );
         setProduct(response.data);
-        setUser(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
+      setLoading(false);
+    };
+
+    fetchProduct();
     // eslint-disable-next-line
   }, []);
 

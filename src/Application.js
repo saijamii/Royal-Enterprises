@@ -6,13 +6,23 @@ import {
   DeleteOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
+import Loading from "./Common/Loading";
+
 export default function Application() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     getInventoryData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    if (!token) {
+      throw new Error("Token not found.");
+    }
+  }, [token]);
 
   const handleDeleteProduct = async (id) => {
     try {
@@ -21,6 +31,29 @@ export default function Application() {
       alert("Delete successful");
       getInventoryData();
     } catch (error) {
+      alert("Something went wrong");
+      console.error("There was an error!", error);
+    }
+  };
+
+  const handleDeleteMoiveRecord = async (id) => {
+    console.log(id, "id");
+    try {
+      setLoading(true);
+      const response = await axios.delete(
+        `https://node-kl1g.onrender.com/deleteProduct/${id}`
+      );
+      console.log(response, "response");
+      if (response.data.message === "User Deleted Successfully") {
+        alert("Delete successful");
+        setLoading(false);
+        getInventoryData();
+      } else {
+        alert("Something went wrong: " + response.data.message);
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
       alert("Something went wrong");
       console.error("There was an error!", error);
     }
@@ -138,11 +171,114 @@ export default function Application() {
     },
   ];
 
+  console.log(colums);
+
+  const moiveColumns = [
+    {
+      title: "movie",
+      dataIndex: "movie",
+    },
+    {
+      title: "title",
+      dataIndex: "title",
+    },
+    {
+      title: "genres",
+      dataIndex: "genres",
+    },
+    {
+      title: "year",
+      dataIndex: "year",
+    },
+    {
+      width: "60px",
+      dataIndex: "_id",
+      key: "_id",
+      render: (_id) => {
+        return (
+          <Row
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <div style={{ padding: "5px", fontSize: "25px" }}>
+              <Popover
+                placement="left"
+                trigger="hover"
+                content={
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    {" "}
+                    <Button
+                      style={{ height: "35px" }}
+                      className="edit-btn"
+                      onClick={() =>
+                        (window.location.href = `/getProductDetail/${_id}`)
+                      }
+                    >
+                      <EllipsisOutlined />
+                      Edit
+                    </Button>
+                    <Popconfirm
+                      placement="left"
+                      title="Are you sure?"
+                      okText="Yes"
+                      cancelText="No"
+                      onConfirm={() => {
+                        handleDeleteMoiveRecord(_id);
+                      }}
+                    >
+                      <Button
+                        className="delete-header-btn"
+                        style={{
+                          width: "100%",
+                          marginTop: "3px",
+                        }}
+                        icon={<DeleteOutlined />}
+                      >
+                        Delete
+                      </Button>
+                    </Popconfirm>
+                  </div>
+                }
+              >
+                <EllipsisOutlined style={{ fontSize: "30px", color: "grey" }} />
+              </Popover>
+            </div>
+          </Row>
+        );
+      },
+    },
+  ];
+
   const getInventoryData = async () => {
-    const { data } = await axios.get("/inventoryProducts");
-    setUsers(data);
-    console.log(data, "data");
+    try {
+      setLoading(true);
+      const { data } = await axios.get(
+        "https://node-kl1g.onrender.com/inventoryProducts",
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      setUsers(data);
+      setLoading(false);
+      console.log(data, "data");
+    } catch (error) {
+      console.error("Error fetching inventory data:", error);
+      setLoading(false);
+    }
   };
+
   return (
     <div style={{ marginTop: "80px" }}>
       <Col span={24} className="fireFox">
@@ -213,9 +349,10 @@ export default function Application() {
               )
             : users
         }
-        columns={colums}
+        columns={moiveColumns}
         style={{ overflow: "auto" }}
       />
+      <Loading enableLoading={loading} />
     </div>
   );
 }
