@@ -53,14 +53,6 @@ const Login = (props) => {
     }
   };
 
-  const onFinishFailed = () => {
-    notification.error({
-      placement: "top",
-      duration: 1,
-      message: "Submit failed!",
-    });
-  };
-
   return (
     <Row justify="center" align="middle" className="login-container bodyy">
       <Col xs={20} sm={16} md={12} lg={8} xl={6}>
@@ -76,7 +68,6 @@ const Login = (props) => {
           <Form
             form={form}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
             autoComplete="off"
             className="login-form"
           >
