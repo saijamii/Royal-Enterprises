@@ -114,6 +114,18 @@ const Login = (props) => {
                 Login
               </Button>
             </Form.Item>
+            Don't have an account?{" "}
+            <span
+              style={{
+                cursor: "pointer",
+                color: "#4f46e5",
+              }}
+              onClick={() => {
+                window.location.href = "/signup";
+              }}
+            >
+              Create Account
+            </span>
           </Form>
         </Card>
       </Col>
