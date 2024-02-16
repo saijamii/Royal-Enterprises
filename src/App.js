@@ -7,6 +7,7 @@ import AddProduct from "./AddProduct";
 import ProductDetail from "./ProductDetail";
 import Login from "./Login";
 import Register from "./Register";
+import Users from "./Users";
 
 // const { Header } = Layout;
 
@@ -108,6 +109,7 @@ function App() {
             <Route path="/home" element={<Application />} />
             <Route path="/addProduct" element={<AddProduct />} />
             <Route path="/getProductDetail/:id" element={<ProductDetail />} />
+            <Route path="/users" element={<Users />} />
           </Routes>
         </Router>
       </>
