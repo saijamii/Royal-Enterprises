@@ -54,7 +54,7 @@ const Register = () => {
   };
 
   return (
-    <Row justify="center" align="middle" className="login-container">
+    <Row justify="center" align="middle" className="login-container bodyy">
       <Col xs={20} sm={16} md={12} lg={8} xl={6}>
         <Card
           className="login-card"
