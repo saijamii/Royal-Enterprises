@@ -84,7 +84,7 @@ function Users() {
                   onClick={() => (window.location.href = "/addProduct")}
                 >
                   <PlusOutlined />
-                  Add Product
+                  Add User
                 </Button>
               </Col>
             </Row>
