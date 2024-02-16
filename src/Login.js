@@ -115,7 +115,7 @@ const Login = (props) => {
                 window.location.href = "/signup";
               }}
             >
-              Create Account
+              Signup
             </span>
           </Form>
         </Card>
