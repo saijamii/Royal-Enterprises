@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Popover, Row, Col, Button, Popconfirm, Input } from "antd";
-import {
-  EllipsisOutlined,
-  DeleteOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
+import { Table, Row, Col, Button, Input } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import Loading from "./Common/Loading";
 
 function Users() {
@@ -16,7 +12,7 @@ function Users() {
 
   useEffect(() => {
     getUsers();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getUsers = async () => {
