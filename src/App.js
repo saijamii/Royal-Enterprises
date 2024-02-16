@@ -104,7 +104,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/Inventory-Mangement" element={<Login />} />
+            <Route path="/inventory-mangement" element={<Login />} />
             <Route path="/signup" element={<Register />} />
             <Route path="/home" element={<Application />} />
             <Route path="/addProduct" element={<AddProduct />} />
