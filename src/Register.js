@@ -11,30 +11,31 @@ const Register = () => {
 
   const onFinish = async (values) => {
     console.log(values, "values");
-    return;
+    // return;
     try {
       setLoading(true);
       const response = await axios.post(
-        "https://node-kl1g.onrender.com/sigin",
+        "https://node-kl1g.onrender.com/sigup",
         values
       );
 
       if (response.data.message === "success") {
         notification.success({
           placement: "top",
-          message: "Sign in successful!",
+          message: "User created successful!",
         });
-        const token = response.data.token;
-        localStorage.setItem("token", token);
-        console.log(token, "token");
+        setLoading(false);
         setTimeout(() => {
-          window.location.href = "/home";
+          window.location.href = "/";
         }, 1200);
-      } else if (response.data.message === "Invalid username or password.") {
+      } else if (
+        response.data.message === "Username already exists. Choose another one."
+      ) {
         notification.error({
           placement: "top",
-          message: "Invalid username or password!",
+          message: "Username already exists. Choose another one",
         });
+        setLoading(false);
       } else {
         setLoading(false);
         notification["error"]({
@@ -42,7 +43,6 @@ const Register = () => {
           message: "Something went wrong!",
         });
       }
-      setLoading(false);
     } catch (error) {
       console.error("Sign in Error:", error);
       setLoading(false);
@@ -54,7 +54,7 @@ const Register = () => {
   };
 
   return (
-    <Row justify="center" align="middle" className="login-container">
+    <Row justify="center" align="middle" className="login-container bodyy">
       <Col xs={20} sm={16} md={12} lg={8} xl={6}>
         <Card
           className="login-card"
