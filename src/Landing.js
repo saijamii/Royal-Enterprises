@@ -10,7 +10,7 @@ import {
   Input,
 } from "antd";
 import Loading from "./Common/Loading";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { UserOutlined, LockOutlined, HomeOutlined } from "@ant-design/icons";
 import b1 from "../src/Common/backvideo12.mp4";
 import "./login.css"; // Import your custom CSS for styling
 import { Header } from "antd/es/layout/layout";
@@ -131,9 +131,22 @@ function Landing() {
           justifyContent: "flex-end",
         }}
       >
-        <Col span={10}></Col>
-        <Col span={14}>
+        <Col span={2}>
+          <Button
+            className="login-header-signin"
+            onClick={() => {
+              formSignIn.resetFields();
+              formSignUp.resetFields();
+              setSignIn(false);
+              setSignUp(false);
+            }}
+            style={{ minWidth: "50px" }}
+            icon={<HomeOutlined />}
+          ></Button>
+        </Col>
+        <Col span={22}>
           <Row gutter={[8, 8]} style={{ justifyContent: "end", width: "100%" }}>
+            <Col></Col>
             <Col>
               <Button
                 className="login-header-signin"
