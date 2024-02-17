@@ -105,17 +105,32 @@ const Register = () => {
                 Submit Details
               </Button>
             </Form.Item>
-            <span
-              style={{
-                cursor: "pointer",
-                color: "#4f46e5",
-              }}
-              onClick={() => {
-                window.location.href = "/";
-              }}
-            >
-              Back to Login
-            </span>
+            <Col>
+              <Row justify={"space-between"}>
+                <span
+                  style={{
+                    cursor: "pointer",
+                    color: "#4f46e5",
+                  }}
+                  onClick={() => {
+                    window.location.href = "/";
+                  }}
+                >
+                  Home
+                </span>
+                <span
+                  style={{
+                    cursor: "pointer",
+                    color: "#4f46e5",
+                  }}
+                  onClick={() => {
+                    window.location.href = "/signin";
+                  }}
+                >
+                  Back to Login
+                </span>
+              </Row>
+            </Col>
           </Form>
         </Card>
       </Col>
