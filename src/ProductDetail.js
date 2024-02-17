@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Row, Button, Divider, Card } from "antd";
 // import { useParams } from "react-router-dom";
 import axios from "axios";
+import Loading from "./Common/Loading";
 
 export default function ProductDetail(props) {
   console.log(props, "props");
@@ -22,6 +23,7 @@ export default function ProductDetail(props) {
           }`
         );
         setProduct(response.data);
+        setUser(response.data);
       } catch (error) {
         console.error("Error fetching product:", error);
       }
@@ -99,6 +101,7 @@ export default function ProductDetail(props) {
           </Button>
         </Col>
       </Row>
+      <Loading enableLoading={loading} />
     </Col>
   );
 }
