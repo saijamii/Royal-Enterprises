@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Popover, Row, Col, Button, Popconfirm, Input } from "antd";
+import {
+  Table,
+  Popover,
+  Row,
+  Col,
+  Button,
+  Popconfirm,
+  Input,
+  notification,
+} from "antd";
 import {
   EllipsisOutlined,
   DeleteOutlined,
@@ -15,12 +24,19 @@ export default function Application() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    getInventoryData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    token && getInventoryData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     if (!token) {
-      throw new Error("Token not found.");
+      console.error("No token ");
+      notification.warning({
+        placement: "top",
+        message: "Unauthorized user",
+      });
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
     }
   }, [token]);
 
