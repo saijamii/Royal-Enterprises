@@ -80,16 +80,32 @@ const Login = (props) => {
       >
         <source src={b1} type="video/mp4" />
       </video>
-      <Header>
-        <Col
-          style={{
-            width: "100%",
-            height: "100%",
-            zIndex: "2",
-          }}
-        >
-          <Row>
-            <Button onClick={() => alert("DDD")}>1</Button>
+      <Header
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+        }}
+      >
+        <Col span={10}></Col>
+        <Col span={14}>
+          <Row gutter={[8, 8]} style={{ justifyContent: "end", width: "100%" }}>
+            <Col>
+              <Button
+                className="login-header-button"
+                onClick={() => alert("DDD")}
+              >
+                1
+              </Button>
+            </Col>
+            <Col>
+              <Button
+                className="login-header-button"
+                onClick={() => alert("DDD")}
+              >
+                1
+              </Button>
+            </Col>
           </Row>
         </Col>
       </Header>
