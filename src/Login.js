@@ -16,7 +16,7 @@ import axios from "axios";
 import "./login.css"; // Import your custom CSS for styling
 import { Header } from "antd/es/layout/layout";
 
-const Login = (props) => {
+const Login = () => {
   const { Content } = Layout;
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
@@ -92,18 +92,18 @@ const Login = (props) => {
           <Row gutter={[8, 8]} style={{ justifyContent: "end", width: "100%" }}>
             <Col>
               <Button
-                className="login-header-button"
-                onClick={() => alert("DDD")}
+                className="login-header-signin"
+                onClick={() => alert("signin")}
               >
-                1
+                Sign in
               </Button>
             </Col>
             <Col>
               <Button
-                className="login-header-button"
-                onClick={() => alert("DDD")}
+                className="login-header-signup"
+                onClick={() => alert("signup")}
               >
-                1
+                Sign up
               </Button>
             </Col>
           </Row>
@@ -117,85 +117,20 @@ const Login = (props) => {
           zIndex: 1,
         }}
       >
-        <div
-          className="content"
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100vh",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-          }}
-        >
-          Welcome
-        </div>
-        <Row justify="center" align="middle" className="login-container">
-          <Col xs={20} sm={16} md={12} lg={8} xl={6}>
-            <Card
-              className="login-card"
+        <Col>
+          <Col span={12}>
+            <div
+              className="content"
               style={{
-                boxShadow: "0 4px 8px 0 rgba(0, 0, 8, 0.2)",
-                backgroundColor: "#c7c8cc",
-                border: "transparent",
+                position: "absolute",
+                width: "100%",
+                height: "100vh",
               }}
             >
-              <h1 className="login-title">Welcome back!</h1>
-              <Form
-                form={form}
-                onFinish={onFinish}
-                autoComplete="off"
-                className="login-form"
-              >
-                <Form.Item
-                  name="userId"
-                  rules={[
-                    { required: true, message: "Please input your email!" },
-                    // { type: "email", message: "Invalid email format!" },
-                  ]}
-                >
-                  <Input
-                    prefix={<UserOutlined className="site-form-item-icon" />}
-                    placeholder="Email Address"
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="password"
-                  rules={[
-                    { required: true, message: "Please input your password!" },
-                  ]}
-                >
-                  <Input
-                    prefix={<LockOutlined className="site-form-item-icon" />}
-                    type="password"
-                    placeholder="Password"
-                  />
-                </Form.Item>
-                <Form.Item>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    className="login-form-button"
-                    loading={loading}
-                  >
-                    Login
-                  </Button>
-                </Form.Item>
-                Don't have an account?{" "}
-                <span
-                  style={{
-                    cursor: "pointer",
-                    color: "#4f46e5",
-                  }}
-                  onClick={() => {
-                    window.location.href = "/signup";
-                  }}
-                >
-                  Signup
-                </span>
-              </Form>
-            </Card>
+              Welcome
+            </div>
           </Col>
-          <Loading enableLoading={loading} />
-        </Row>
+        </Col>
       </Content>
     </Layout>
   );
