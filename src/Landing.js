@@ -35,7 +35,7 @@ function Landing() {
             <Col>
               <Button
                 className="login-header-signin"
-                onClick={() => alert("signin")}
+                onClick={() => (window.location.href = "/signin")}
               >
                 Sign in
               </Button>
@@ -43,7 +43,7 @@ function Landing() {
             <Col>
               <Button
                 className="login-header-signup"
-                onClick={() => alert("signup")}
+                onClick={() => (window.location.href = "/signup")}
               >
                 Sign up
               </Button>
