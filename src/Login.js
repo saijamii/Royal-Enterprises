@@ -14,6 +14,7 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import b1 from "../src/Common/backvideo12.mp4";
 import axios from "axios";
 import "./login.css"; // Import your custom CSS for styling
+import { Header } from "antd/es/layout/layout";
 
 const Login = (props) => {
   const { Content } = Layout;
@@ -66,6 +67,32 @@ const Login = (props) => {
 
   return (
     <Layout>
+      <video
+        autoPlay
+        loop
+        muted
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+      >
+        <source src={b1} type="video/mp4" />
+      </video>
+      <Header>
+        <Col
+          style={{
+            width: "100%",
+            height: "100%",
+            zIndex: "2",
+          }}
+        >
+          <Row>
+            <Button onClick={() => alert("DDD")}>1</Button>
+          </Row>
+        </Col>
+      </Header>
       <Content
         style={{
           position: "absolute",
@@ -74,19 +101,6 @@ const Login = (props) => {
           zIndex: 1,
         }}
       >
-        <video
-          autoPlay
-          loop
-          muted
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          }}
-        >
-          <source src={b1} type="video/mp4" />
-        </video>
         <div
           className="content"
           style={{
