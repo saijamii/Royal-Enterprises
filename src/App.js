@@ -6,6 +6,7 @@ import "./App.css";
 import AddProduct from "./AddProduct";
 import ProductDetail from "./ProductDetail";
 import Login from "./Login";
+import Landing from "./Landing";
 import Register from "./Register";
 import Users from "./Users";
 
@@ -17,8 +18,9 @@ function App() {
       <>
         <Router>
           <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/inventory-mangement" element={<Login />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/inventory-mangement" element={<Landing />} />
+            <Route path="/sigin" element={<Login />} />
             <Route path="/signup" element={<Register />} />
             <Route path="/home" element={<Application />} />
             <Route path="/addProduct" element={<AddProduct />} />
