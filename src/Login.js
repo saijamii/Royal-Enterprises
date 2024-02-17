@@ -11,7 +11,7 @@ import {
 } from "antd";
 import Loading from "./Common/Loading";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import b1 from "../src/Common/backvideo.mp4";
+import b1 from "../src/Common/backvideo12.mp4";
 import axios from "axios";
 import "./login.css"; // Import your custom CSS for styling
 
@@ -84,7 +84,6 @@ const Login = (props) => {
             height: "100%",
             objectFit: "cover",
           }}
-          playbackRate={0.1}
         >
           <source src={b1} type="video/mp4" />
         </video>
@@ -99,7 +98,7 @@ const Login = (props) => {
         >
           Welcome
         </div>
-        <Row justify="center" align="middle" className="login-container bodyy">
+        <Row justify="center" align="middle" className="login-container">
           <Col xs={20} sm={16} md={12} lg={8} xl={6}>
             <Card
               className="login-card"
