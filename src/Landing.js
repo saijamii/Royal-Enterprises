@@ -10,12 +10,7 @@ import {
   Input,
 } from "antd";
 import Loading from "./Common/Loading";
-import {
-  UserOutlined,
-  LockOutlined,
-  HomeOutlined,
-  MailOutlined,
-} from "@ant-design/icons";
+import { LockOutlined, HomeOutlined, MailOutlined } from "@ant-design/icons";
 import b1 from "../src/Common/backvideo12.mp4";
 import "./login.css"; // Import your custom CSS for styling
 import { Header } from "antd/es/layout/layout";
@@ -72,8 +67,6 @@ function Landing() {
   };
 
   const onFinishSignUp = async (values) => {
-    console.log(values, "values");
-    return;
     try {
       setLoading(true);
       const response = await axios.post(
