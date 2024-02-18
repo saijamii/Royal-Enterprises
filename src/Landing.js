@@ -265,7 +265,7 @@ function Landing() {
             </Row>
           ) : !signin && signup ? (
             <Row justify="center" align="middle" className="login-container">
-              <Col  >
+              <Col xxl={12} xl={12} lg={16} md={14} sm={14} xs={24}>
                 <Card
                   className="login-card"
                   style={{
@@ -281,7 +281,7 @@ function Landing() {
                     autoComplete="off"
                     className="login-form"
                   >
-                    <Col xxl={6} xl={6} lg={12} md={12} sm={24} xs={24}>
+                    <Col>
                       <span>
                         First Name<span style={{ color: "red" }}>*</span>
                       </span>
