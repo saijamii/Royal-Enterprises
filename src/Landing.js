@@ -67,6 +67,8 @@ function Landing() {
   };
 
   const onFinishSignUp = async (values) => {
+    console.log(values, "values");
+    return;
     try {
       setLoading(true);
       const response = await axios.post(
@@ -263,7 +265,7 @@ function Landing() {
             </Row>
           ) : !signin && signup ? (
             <Row justify="center" align="middle" className="login-container">
-              <Col span={12}>
+              <Col  >
                 <Card
                   className="login-card"
                   style={{
@@ -272,14 +274,104 @@ function Landing() {
                     border: "transparent",
                   }}
                 >
-                  <h1 className="login-title">Create account</h1>
+                  {/* <h1 className="login-title">Create account</h1> */}
                   <Form
                     form={formSignUp}
                     onFinish={onFinishSignUp}
                     autoComplete="off"
                     className="login-form"
                   >
-                    <Form.Item
+                    <Col xxl={6} xl={6} lg={12} md={12} sm={24} xs={24}>
+                      <span>
+                        First Name<span style={{ color: "red" }}>*</span>
+                      </span>
+                      <Form.Item
+                        name="firstName"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your First Name!",
+                          },
+                        ]}
+                      >
+                        <Input
+                          placeholder="First Name"
+                          className="form-input"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col>
+                      <span>
+                        Last Name<span style={{ color: "red" }}>*</span>
+                      </span>
+                      <Form.Item
+                        name="lastName"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your Last Name!",
+                          },
+                        ]}
+                      >
+                        <Input
+                          placeholder="Input Last Name"
+                          className="form-input"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col>
+                      <span>
+                        Email<span style={{ color: "red" }}>*</span>
+                      </span>
+                      <Form.Item
+                        name="email"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please Enter Your Email!",
+                          },
+                          {
+                            type: "email",
+                            message: "The Input Is Not Valid Email",
+                          },
+                        ]}
+                      >
+                        <Input
+                          className="form-input"
+                          placeholder="Please Enter Your Email"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col>
+                      <span className="title_changes ">
+                        Password<span style={{ color: "red" }}>*</span>
+                      </span>
+
+                      <Form.Item
+                        name="password"
+                        rules={[
+                          {
+                            required: true,
+                            pattern:
+                              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%#^*?&+=_-])[A-Za-z\d$@$!%*?&]/,
+                            message:
+                              "At least one  upperCase letter, At least one number and one special character!",
+                          },
+                        ]}
+                        hasFeedback
+                      >
+                        <Input.Password
+                          placeholder="Password"
+                          autoComplete="new-password"
+                          className="form-input"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    {/* <Form.Item
                       name="userId"
                       rules={[
                         { required: true, message: "Please input your email!" },
@@ -292,7 +384,7 @@ function Landing() {
                         }
                         placeholder="Email Address"
                       />
-                    </Form.Item>
+                    </Form.Item> */}
                     <Form.Item
                       name="password"
                       rules={[
