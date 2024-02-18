@@ -78,7 +78,7 @@ function Users() {
                     color: "#fff",
                     border: "#fe6101",
                   }}
-                  onClick={() => (window.location.href = "/addProduct")}
+                  onClick={() => (window.location.href = "/addUser")}
                 >
                   <PlusOutlined />
                   Add User
