@@ -10,7 +10,7 @@ import {
   Input,
 } from "antd";
 import Loading from "./Common/Loading";
-import { UserOutlined, LockOutlined, HomeOutlined } from "@ant-design/icons";
+import { LockOutlined, HomeOutlined, MailOutlined } from "@ant-design/icons";
 import b1 from "../src/Common/backvideo12.mp4";
 import "./login.css"; // Import your custom CSS for styling
 import { Header } from "antd/es/layout/layout";
@@ -185,7 +185,7 @@ function Landing() {
         <Col>
           {signin && !signup ? (
             <Row justify="center" align="middle" className="login-container">
-              <Col span={12}>
+              <Col xxl={12} xl={12} lg={16} md={14} sm={14} xs={24}>
                 <Card
                   className="login-card"
                   style={{
@@ -204,15 +204,22 @@ function Landing() {
                     <Form.Item
                       name="userId"
                       rules={[
-                        { required: true, message: "Please input your email!" },
-                        // { type: "email", message: "Invalid email format!" },
+                        {
+                          required: true,
+                          message: "Please Enter Your Email!",
+                        },
+                        {
+                          type: "email",
+                          message: "The Input Is Not Valid Email",
+                        },
                       ]}
                     >
                       <Input
+                        className="form-input"
+                        placeholder="Please Enter Your Email"
                         prefix={
-                          <UserOutlined className="site-form-item-icon" />
+                          <MailOutlined className="site-form-item-icon" />
                         }
-                        placeholder="Email Address"
                       />
                     </Form.Item>
                     <Form.Item
@@ -263,7 +270,7 @@ function Landing() {
             </Row>
           ) : !signin && signup ? (
             <Row justify="center" align="middle" className="login-container">
-              <Col span={12}>
+              <Col xxl={12} xl={12} lg={16} md={14} sm={14} xs={24}>
                 <Card
                   className="login-card"
                   style={{
@@ -272,44 +279,109 @@ function Landing() {
                     border: "transparent",
                   }}
                 >
-                  <h1 className="login-title">Create account</h1>
+                  {/* <h1 className="login-title">Create account</h1> */}
                   <Form
                     form={formSignUp}
                     onFinish={onFinishSignUp}
                     autoComplete="off"
                     className="login-form"
                   >
-                    <Form.Item
-                      name="userId"
-                      rules={[
-                        { required: true, message: "Please input your email!" },
-                        // { type: "email", message: "Invalid email format!" },
-                      ]}
-                    >
-                      <Input
-                        prefix={
-                          <UserOutlined className="site-form-item-icon" />
-                        }
-                        placeholder="Email Address"
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      name="password"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your password!",
-                        },
-                      ]}
-                    >
-                      <Input
-                        prefix={
-                          <LockOutlined className="site-form-item-icon" />
-                        }
-                        type="password"
-                        placeholder="Password"
-                      />
-                    </Form.Item>
+                    <Col>
+                      <span>
+                        First Name<span style={{ color: "red" }}>*</span>
+                      </span>
+                      <Form.Item
+                        name="firstName"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your First Name!",
+                          },
+                        ]}
+                      >
+                        <Input
+                          placeholder="First Name"
+                          className="form-input"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col>
+                      <span>
+                        Last Name<span style={{ color: "red" }}>*</span>
+                      </span>
+                      <Form.Item
+                        name="lastName"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your Last Name!",
+                          },
+                        ]}
+                      >
+                        <Input
+                          placeholder="Input Last Name"
+                          className="form-input"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col>
+                      <span>
+                        Email<span style={{ color: "red" }}>*</span>
+                      </span>
+                      <Form.Item
+                        name="userId"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please Enter Your Email!",
+                          },
+                          {
+                            type: "email",
+                            message: "The Input Is Not Valid Email",
+                          },
+                        ]}
+                      >
+                        <Input
+                          className="form-input"
+                          placeholder="Please Enter Your Email"
+                          prefix={
+                            <MailOutlined className="site-form-item-icon" />
+                          }
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col>
+                      <span className="title_changes ">
+                        Password<span style={{ color: "red" }}>*</span>
+                      </span>
+
+                      <Form.Item
+                        name="password"
+                        rules={[
+                          {
+                            required: true,
+                            pattern:
+                              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%#^*?&+=_-])[A-Za-z\d$@$!%*?&]/,
+                            message:
+                              "At least one  upperCase letter, At least one number and one special character!",
+                          },
+                        ]}
+                        hasFeedback
+                      >
+                        <Input.Password
+                          placeholder="Password"
+                          autoComplete="new-password"
+                          className="form-input"
+                          prefix={
+                            <LockOutlined className="site-form-item-icon" />
+                          }
+                        />
+                      </Form.Item>
+                    </Col>
+
                     <Form.Item>
                       <Button
                         type="primary"
