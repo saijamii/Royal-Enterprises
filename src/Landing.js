@@ -211,15 +211,22 @@ function Landing() {
                     <Form.Item
                       name="userId"
                       rules={[
-                        { required: true, message: "Please input your email!" },
-                        // { type: "email", message: "Invalid email format!" },
+                        {
+                          required: true,
+                          message: "Please Enter Your Email!",
+                        },
+                        {
+                          type: "email",
+                          message: "The Input Is Not Valid Email",
+                        },
                       ]}
                     >
                       <Input
+                        className="form-input"
+                        placeholder="Please Enter Your Email"
                         prefix={
-                          <UserOutlined className="site-form-item-icon" />
+                          <MailOutlined className="site-form-item-icon" />
                         }
-                        placeholder="Email Address"
                       />
                     </Form.Item>
                     <Form.Item
