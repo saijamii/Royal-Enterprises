@@ -10,7 +10,12 @@ import {
   Input,
 } from "antd";
 import Loading from "./Common/Loading";
-import { UserOutlined, LockOutlined, HomeOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  LockOutlined,
+  HomeOutlined,
+  MailOutlined,
+} from "@ant-design/icons";
 import b1 from "../src/Common/backvideo12.mp4";
 import "./login.css"; // Import your custom CSS for styling
 import { Header } from "antd/es/layout/layout";
@@ -326,7 +331,7 @@ function Landing() {
                         Email<span style={{ color: "red" }}>*</span>
                       </span>
                       <Form.Item
-                        name="email"
+                        name="userId"
                         rules={[
                           {
                             required: true,
@@ -341,6 +346,9 @@ function Landing() {
                         <Input
                           className="form-input"
                           placeholder="Please Enter Your Email"
+                          prefix={
+                            <MailOutlined className="site-form-item-icon" />
+                          }
                         />
                       </Form.Item>
                     </Col>
@@ -367,41 +375,13 @@ function Landing() {
                           placeholder="Password"
                           autoComplete="new-password"
                           className="form-input"
+                          prefix={
+                            <LockOutlined className="site-form-item-icon" />
+                          }
                         />
                       </Form.Item>
                     </Col>
 
-                    {/* <Form.Item
-                      name="userId"
-                      rules={[
-                        { required: true, message: "Please input your email!" },
-                        // { type: "email", message: "Invalid email format!" },
-                      ]}
-                    >
-                      <Input
-                        prefix={
-                          <UserOutlined className="site-form-item-icon" />
-                        }
-                        placeholder="Email Address"
-                      />
-                    </Form.Item> */}
-                    <Form.Item
-                      name="password"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your password!",
-                        },
-                      ]}
-                    >
-                      <Input
-                        prefix={
-                          <LockOutlined className="site-form-item-icon" />
-                        }
-                        type="password"
-                        placeholder="Password"
-                      />
-                    </Form.Item>
                     <Form.Item>
                       <Button
                         type="primary"
