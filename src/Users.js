@@ -31,6 +31,7 @@ function Users() {
       setLoading(false);
     }
   };
+
   return (
     <div style={{ marginTop: "80px" }}>
       <Col span={24} className="fireFox">
@@ -103,12 +104,21 @@ function Users() {
         }
         columns={[
           {
-            title: "userId",
-            dataIndex: "userId",
+            title: "FIRST NAME",
+            dataIndex: "firstName",
           },
           {
-            title: "title",
-            dataIndex: "title",
+            title: "LAST NAME",
+            dataIndex: "lastName",
+          },
+          {
+            title: "PHONE",
+            dataIndex: "phone",
+          },
+
+          {
+            title: "EMAIL",
+            dataIndex: "email",
           },
         ]}
         style={{ overflow: "auto" }}
