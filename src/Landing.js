@@ -185,7 +185,7 @@ function Landing() {
         <Col>
           {signin && !signup ? (
             <Row justify="center" align="middle" className="login-container">
-              <Col span={12}>
+              <Col xxl={12} xl={12} lg={16} md={14} sm={14} xs={24}>
                 <Card
                   className="login-card"
                   style={{
