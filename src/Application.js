@@ -10,6 +10,7 @@ import {
   Input,
   notification,
 } from "antd";
+import { Layout } from "antd";
 import {
   EllipsisOutlined,
   DeleteOutlined,
@@ -18,6 +19,7 @@ import {
 import Loading from "./Common/Loading";
 
 export default function Application() {
+  const { Header, Sider, Content } = Layout;
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
@@ -39,6 +41,22 @@ export default function Application() {
       }, 2000);
     }
   }, [token]);
+  const headerStyle = {
+    textAlign: "center",
+    color: "#fff",
+    height: 64,
+    paddingInline: 48,
+    lineHeight: "64px",
+    backgroundColor: "#4096ff",
+  };
+
+  const siderStyle = {
+    textAlign: "center",
+    lineHeight: "120px",
+    color: "#fff",
+    backgroundColor: "#1677ff",
+    height: "100vh",
+  };
 
   const handleDeleteProduct = async (id) => {
     try {
@@ -296,79 +314,89 @@ export default function Application() {
   };
 
   return (
-    <div style={{ marginTop: "80px" }}>
-      <Col span={24} className="fireFox">
-        <Row justify="space-between" gutter={[16, 16]}>
-          <Col span={12}>
-            <div>
-              <>
-                <h2
-                  style={{
-                    fontSize: "30px",
-                    marginLeft: "10px",
-                  }}
-                >
-                  USERS{" "}
-                  <span style={{ fontSize: "20px", color: "#fe6101" }}>
-                    ({users.length})
-                  </span>
-                </h2>
-              </>
-            </div>
-          </Col>
+    <Layout>
+      <Sider style={siderStyle} width="10%">
+        Sider
+      </Sider>
+      <Layout>
+        <Header style={headerStyle}>Header</Header>
+        <Content style={{ height: "100%" }}>
+          <div>
+            <Col span={24} className="fireFox">
+              <Row justify="space-between" gutter={[16, 16]}>
+                <Col span={12}>
+                  <div>
+                    <>
+                      <h2
+                        style={{
+                          fontSize: "30px",
+                          marginLeft: "10px",
+                        }}
+                      >
+                        USERS{" "}
+                        <span style={{ fontSize: "20px", color: "#fe6101" }}>
+                          ({users.length})
+                        </span>
+                      </h2>
+                    </>
+                  </div>
+                </Col>
 
-          <Col span={12}>
-            <Row gutter={[16, 16]} justify="end">
-              <Col>
-                <Input
-                  style={{ marginTop: "25px" }}
-                  placeholder="Search..."
-                  onChange={(e) => {
-                    setSearch(e.target.value);
-                  }}
-                />
-              </Col>
-              <Col>
-                <Button
-                  style={{
-                    minWidth: "160px",
-                    borderRadius: "6px",
-                    float: "right",
-                    height: "36px",
-                    marginRight: "12px",
-                    marginTop: "22px",
-                    backgroundColor: "#0050b3",
-                    color: "#fff",
-                    border: "#fe6101",
-                  }}
-                  onClick={() => (window.location.href = "/addProduct")}
-                >
-                  <PlusOutlined />
-                  Add Product
-                </Button>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Col>
-      <Table
-        dataSource={
-          search.length > 0
-            ? users.filter(
-                (e) =>
-                  e.firstName?.indexOf(search) > -1 ||
-                  e.firstName?.toUpperCase()?.indexOf(search) > -1 ||
-                  e.firstName?.toLowerCase()?.indexOf(search) > -1 ||
-                  e.lastName?.indexOf(search) > -1 ||
-                  e.lastName?.toUpperCase()?.indexOf(search) > -1 ||
-                  e.lastName?.toLowerCase()?.indexOf(search) > -1
-              )
-            : users
-        }
-        columns={moiveColumns}
-        style={{ overflow: "auto" }}
-      />
-      <Loading enableLoading={loading} />
-    </div>
+                <Col span={12}>
+                  <Row gutter={[16, 16]} justify="end">
+                    <Col>
+                      <Input
+                        style={{ marginTop: "25px" }}
+                        placeholder="Search..."
+                        onChange={(e) => {
+                          setSearch(e.target.value);
+                        }}
+                      />
+                    </Col>
+                    <Col>
+                      <Button
+                        style={{
+                          minWidth: "160px",
+                          borderRadius: "6px",
+                          float: "right",
+                          height: "36px",
+                          marginRight: "12px",
+                          marginTop: "22px",
+                          backgroundColor: "#0050b3",
+                          color: "#fff",
+                          border: "#fe6101",
+                        }}
+                        onClick={() => (window.location.href = "/addProduct")}
+                      >
+                        <PlusOutlined />
+                        Add Product
+                      </Button>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </Col>
+            <Table
+              dataSource={
+                search.length > 0
+                  ? users.filter(
+                      (e) =>
+                        e.firstName?.indexOf(search) > -1 ||
+                        e.firstName?.toUpperCase()?.indexOf(search) > -1 ||
+                        e.firstName?.toLowerCase()?.indexOf(search) > -1 ||
+                        e.lastName?.indexOf(search) > -1 ||
+                        e.lastName?.toUpperCase()?.indexOf(search) > -1 ||
+                        e.lastName?.toLowerCase()?.indexOf(search) > -1
+                    )
+                  : users
+              }
+              columns={moiveColumns}
+              style={{ overflow: "auto" }}
+            />
+            <Loading enableLoading={loading} />
+          </div>
+        </Content>
+      </Layout>
+    </Layout>
   );
 }
