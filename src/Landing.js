@@ -9,7 +9,6 @@ import {
   notification,
   Input,
 } from "antd";
-import Loading from "./Common/Loading";
 import { LockOutlined, HomeOutlined, MailOutlined } from "@ant-design/icons";
 import b1 from "../src/Common/backvideo12.mp4";
 import "./login.css"; // Import your custom CSS for styling
@@ -266,7 +265,6 @@ function Landing() {
                   </Form>
                 </Card>
               </Col>
-              <Loading enableLoading={loading} />
             </Row>
           ) : !signin && signup ? (
             <Row justify="center" align="middle" className="login-container">
@@ -425,7 +423,6 @@ function Landing() {
                   </Form>
                 </Card>
               </Col>
-              <Loading enableLoading={loading} />
             </Row>
           ) : (
             <Col span={12}>
