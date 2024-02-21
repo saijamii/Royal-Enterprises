@@ -10,12 +10,13 @@ import {
   Input,
   notification,
 } from "antd";
-import { Layout } from "antd";
+import { Layout, Menu } from "antd";
 import {
   EllipsisOutlined,
   DeleteOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 import Loading from "./Common/Loading";
 
 export default function Application() {
@@ -316,7 +317,18 @@ export default function Application() {
   return (
     <Layout>
       <Sider style={siderStyle} width="10%">
-        Sider
+        <Menu
+          className="sider-menu"
+          mode="inline"
+          style={{ position: "relative", height: "100%" }}
+        >
+          <Menu.Item key="1" style={{ marginLeft: "0px",color:"white" }}>
+            <Link to="/home" title="Dashboard">
+              <span></span>
+            </Link>
+            DASHBOARD
+          </Menu.Item>
+        </Menu>
       </Sider>
       <Layout>
         <Header style={headerStyle}>Header</Header>
