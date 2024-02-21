@@ -322,11 +322,17 @@ export default function Application() {
           mode="inline"
           style={{ position: "relative", height: "100%" }}
         >
-          <Menu.Item key="1" style={{ marginLeft: "0px",color:"white" }}>
+          <Menu.Item key="1" style={{ marginLeft: "0px", color: "white" }}>
             <Link to="/home" title="Dashboard">
               <span></span>
             </Link>
-            DASHBOARD
+            Products
+          </Menu.Item>
+          <Menu.Item key="2" style={{ marginLeft: "0px", color: "white" }}>
+            <Link to="/users" title="Dashboard">
+              <span></span>
+            </Link>
+            Users
           </Menu.Item>
         </Menu>
       </Sider>
@@ -345,7 +351,7 @@ export default function Application() {
                           marginLeft: "10px",
                         }}
                       >
-                        USERS{" "}
+                        Products{" "}
                         <span style={{ fontSize: "20px", color: "#fe6101" }}>
                           ({users.length})
                         </span>
