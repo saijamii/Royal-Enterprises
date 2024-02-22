@@ -22,6 +22,8 @@ export default function AddProduct() {
   };
 
   const onSubmitForm = async (values) => {
+    console.log(values,"values")
+    return
     const response = await axios.post("/addInventory", {
       firstName: values.firstName,
       lastName: values.lastName,
