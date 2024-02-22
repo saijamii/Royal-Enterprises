@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import {
   Form,
   Input,
   Button,
-  DatePicker,
-  TreeSelect,
+  // DatePicker,
+  // TreeSelect,
   Col,
   Row,
   Card,
@@ -16,14 +16,14 @@ const { TextArea } = Input;
 
 export default function AddProduct() {
   const [dataForm] = Form.useForm();
-  const [dob, setDob] = useState("");
+  // const [dob, setDob] = useState("");
   const onResetValues = () => {
     document.getElementById("myForm").reset();
   };
 
   const onSubmitForm = async (values) => {
-    console.log(values,"values")
-    return
+    console.log(values, "values");
+    return;
     const response = await axios.post("/addInventory", {
       firstName: values.firstName,
       lastName: values.lastName,
@@ -31,7 +31,7 @@ export default function AddProduct() {
       gender: values.gender,
       designation: values.designation,
       phone: values.phone,
-      dob: dob,
+      // dob: dob,
       comments: values.comments,
       dataType: "form",
       createdAt: Date.now(),
@@ -111,10 +111,7 @@ export default function AddProduct() {
                     xs={{ span: 24 }}
                   >
                     <b>Product Name </b>
-                    <Form.Item
-                      name="productName"
-                      
-                    >
+                    <Form.Item name="productName">
                       <Input
                         placeholder="Product Name"
                         type="text"
@@ -207,7 +204,7 @@ export default function AddProduct() {
                     sm={{ span: 24 }}
                     xs={{ span: 24 }}
                   >
-                    <div   style={{ float: "right" }}>
+                    <div style={{ float: "right" }}>
                       <Row>
                         {/* <Row>
                                         <Popover
