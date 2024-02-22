@@ -9,11 +9,13 @@ import {
   Col,
   Row,
   Card,
+  Divider,
 } from "antd";
 
 const { TextArea } = Input;
 
 export default function AddProduct() {
+  const [dataForm] = Form.useForm();
   const [dob, setDob] = useState("");
   const onResetValues = () => {
     document.getElementById("myForm").reset();
@@ -44,7 +46,7 @@ export default function AddProduct() {
   };
 
   return (
-    <div style={{ marginTop: "80px" }}>
+    <div style={{ marginTop: "80px", background: "#f0f2f5" }}>
       <Col span={22} style={{ marginTop: "20px" }}>
         <Row justify={"end"}>
           <Button
@@ -56,197 +58,233 @@ export default function AddProduct() {
         </Row>
       </Col>
       <Col span={24}>
-        <Row>
-          <Col span={8}></Col>
-
-          <Col span={8} style={{ marginTop: "50px" }}>
-            <Card style={{ boxShadow: "  0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}>
+        <Row className="product-card" justify="space-between" gutter={[16, 16]}>
+          <Col xxl={24}>
+            <Card
+              style={{
+                margin: "0px auto",
+              }}
+            >
               <Form
-                labelCol={{ span: 4 }}
-                wrapperCol={{ span: 14 }}
-                layout="horizontal"
+                layout="vertical"
+                id={"dataForm"}
                 onFinish={onSubmitForm}
-                id="myForm"
+                style={{ margin: "10px 0px" }}
+                form={dataForm}
               >
-                <Form.Item
-                  name="firstName"
-                  label="First Name "
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your firstName",
-                    },
-                  ]}
-                >
-                  <Input placeholder="firstName" />
-                </Form.Item>
-                <Form.Item
-                  name="lastName"
-                  label="Last Name "
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your lastName",
-                    },
-                  ]}
-                >
-                  <Input placeholder="lastName" />
-                </Form.Item>
+                <Row gutter={[16, 0]}>
+                  <Col
+                    xxl={{ span: 8 }}
+                    xl={{ span: 8 }}
+                    lg={{ span: 8 }}
+                    md={{ span: 24 }}
+                    sm={{ span: 24 }}
+                    xs={{ span: 24 }}
+                  >
+                    <b>
+                      SKU #<span className="">*</span>
+                    </b>
+                    <Form.Item
+                      name="productNumber"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input SKU #",
+                        },
+                      ]}
+                    >
+                      <Input
+                        placeholder="SKU#"
+                        type="text"
+                        className="form-input"
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col
+                    xxl={{ span: 8 }}
+                    xl={{ span: 8 }}
+                    lg={{ span: 8 }}
+                    md={{ span: 24 }}
+                    sm={{ span: 24 }}
+                    xs={{ span: 24 }}
+                  >
+                    <b>Product Name </b>
+                    <Form.Item
+                      name="productName"
+                      
+                    >
+                      <Input
+                        placeholder="Product Name"
+                        type="text"
+                        className="form-input"
+                      />
+                    </Form.Item>
+                  </Col>
 
-                <Form.Item
-                  name="email"
-                  label="Email ID"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your email",
-                    },
-                  ]}
-                >
-                  <Input type="email" placeholder="email" />
-                </Form.Item>
+                  <Col
+                    xxl={{ span: 8 }}
+                    xl={{ span: 8 }}
+                    lg={{ span: 8 }}
+                    md={{ span: 24 }}
+                    sm={{ span: 24 }}
+                    xs={{ span: 24 }}
+                  >
+                    <b>
+                      Cost <span className="">*</span>
+                    </b>
+                    <Form.Item
+                      name="regularCost"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input cost",
+                        },
+                      ]}
+                    >
+                      <Input
+                        placeholder="Cost"
+                        type="number"
+                        prefix="$"
+                        className="form-input"
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col
+                    xxl={{ span: 8 }}
+                    xl={{ span: 8 }}
+                    lg={{ span: 8 }}
+                    md={{ span: 24 }}
+                    sm={{ span: 24 }}
+                    xs={{ span: 24 }}
+                  >
+                    <b>
+                      Price <span className="">*</span>
+                    </b>
+                    <Form.Item
+                      name="regularPrice"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input price",
+                        },
+                      ]}
+                    >
+                      <Input
+                        placeholder="Price"
+                        type="number"
+                        prefix="$"
+                        className="form-input"
+                      />
+                    </Form.Item>
+                  </Col>
 
-                <Form.Item
-                  name="gender"
-                  label="Gender"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your gender",
-                    },
-                  ]}
-                >
-                  <TreeSelect
-                    treeData={[
-                      {
-                        title: "Male",
-                        value: "male",
-                      },
-                      {
-                        title: "FeMale",
-                        value: "female",
-                      },
-                    ]}
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name="designation"
-                  label="Designation"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your designation",
-                    },
-                  ]}
-                >
-                  <TreeSelect
-                    treeData={[
-                      {
-                        title: "Front-End-Developer",
-                        value: "Front-End-Developer",
-                      },
-                      {
-                        title: "Back-End-Developer",
-                        value: "Back-End-Developer",
-                      },
-                      {
-                        title: "Full-Stack-Developer",
-                        value: "Full-Stack-Developer",
-                      },
-                      { title: "Mobile-Developer", value: "Mobile-Developer" },
-                      {
-                        title: "Software Developer",
-                        value: "Software-Developer",
-                      },
-                      {
-                        title: "Junior Software Developer",
-                        value: "Junior-Software-Developer",
-                      },
-                      {
-                        title: "Senior Software Developer",
-                        value: "Senior-Software-Developer",
-                      },
-                      {
-                        title: "Digital Marketing Analyst",
-                        value: "Digital-Marketing-Analyst",
-                      },
-                      { title: "SEO Specialist", value: "SEO-Specialist" },
-                      {
-                        title: "Quality Assurance",
-                        value: "Quality-Assurance",
-                      },
-                    ]}
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="phone"
-                  label="Mobile Phone"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your phone",
-                    },
-                  ]}
-                >
-                  <Input type="number" placeholder="phone" />
-                </Form.Item>
-
-                <Form.Item
-                  name="dob"
-                  label="Date of Birth"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your dob",
-                    },
-                  ]}
-                >
-                  <DatePicker
-                    onChange={(e) => {
-                      setDob(e);
-                    }}
-                    format="DD/MM/YYYY"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name="comments"
-                  label="Comments"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your comments",
-                    },
-                  ]}
-                >
-                  <TextArea rows={4} placeholder=" Please Enter comments" />
-                </Form.Item>
-
-                {/* <Form.Item label="Upload" valuePropName="fileList">
-          <Upload action="/upload.do" listType="picture-card">
-            <div>
-              <PlusOutlined />
-              <div style={{ marginTop: 8 }}>Upload</div>
-            </div>
-          </Upload>
-        </Form.Item> */}
-
-                <center>
-                  <Form.Item>
-                    <Button
-                      type="submit"
-                      htmlType="submit"
+                  <Divider>
+                    <h1
                       style={{
-                        width: "144px",
-                        backgroundColor: "#0958d9",
-                        color: "#fff",
+                        fontSize: "20px",
+                        marginBottom: "-15px",
                       }}
                     >
-                      Submit
-                    </Button>
-                  </Form.Item>
-                </center>
+                      Product(s)
+                    </h1>
+                  </Divider>
+                  <Divider />
+                  <Col span={24}>
+                    <b>
+                      Description <span className=""></span>
+                    </b>
+                    <Form.Item name="shortDescription">
+                      <TextArea showCount style={{ height: 100 }} />
+                    </Form.Item>
+                  </Col>
+                  <Col
+                    xxl={{ span: 24 }}
+                    xl={{ span: 24 }}
+                    lg={{ span: 24 }}
+                    md={{ span: 24 }}
+                    sm={{ span: 24 }}
+                    xs={{ span: 24 }}
+                  >
+                    <div   style={{ float: "right" }}>
+                      <Row>
+                        {/* <Row>
+                                        <Popover
+                                          title={null}
+                                          content={
+                                            <p style={{ margin: "0px" }}>
+                                              A way to know if this is search
+                                              interface
+                                            </p>
+                                          }
+                                        >
+                                          <h1
+                                            style={{
+                                              fontSize: "18px",
+                                              color:
+                                                appConfig.app_colors.greyLight,
+                                              marginTop: "6px",
+                                              cursor: "pointer",
+                                            }}
+                                          >
+                                            <InfoCircleOutlined
+                                              style={{
+                                                color:
+                                                  appConfig.app_colors
+                                                    .yellowDark,
+                                              }}
+                                            />{" "}
+                                            <b>Discontinue</b>
+                                          </h1>
+                                        </Popover>
+
+                                        <Form.Item
+                                          name="discontinued"
+                                          initialValue={isDiscontinued}
+                                        >
+                                          <Switch
+                                            checkedChildren="Yes"
+                                            unCheckedChildren="No"
+                                            onChange={(value) =>
+                                              setIsDiscontinued(value)
+                                            }
+                                            checked={isDiscontinued}
+                                            style={{
+                                              backgroundColor: isDiscontinued
+                                                ? appConfig.app_colors
+                                                    .greenLight
+                                                : appConfig.app_colors
+                                                    .greyLight,
+                                              marginTop: "7px",
+                                              marginLeft: "10px",
+                                            }}
+                                          />
+                                        </Form.Item>
+                                      </Row>
+                                      <Divider
+                                        className="dividerVertical1"
+                                        type="vertical"
+                                        style={{ marginTop: "5px" }}
+                                      /> */}
+                        <Button
+                          type="default"
+                          style={{
+                            width: "max-content",
+                            marginLeft: "auto",
+                            backgroundColor: "#28589a",
+                            color: "white",
+                            borderRadius: "5px",
+                            border: "none",
+                            // marginLeft: "20px",
+                          }}
+                          htmlType="submit"
+                          form="dataForm"
+                        >
+                          Submit
+                        </Button>
+                      </Row>
+                    </div>
+                  </Col>
+                </Row>
               </Form>
             </Card>
           </Col>
