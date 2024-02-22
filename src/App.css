@@ -371,3 +371,13 @@
   }
 }
 
+.ant-row.ant-row-space-between.product-card {
+  justify-content: center;
+}
+
+.form-input {
+  border-radius: 3px;
+  height: 35px;
+  padding: 4px 11px;
+  margin-right: 100px;
+}
