@@ -118,7 +118,7 @@ function Users() {
 
           {
             title: "EMAIL",
-            dataIndex: "email",
+            dataIndex: "userId",
           },
         ]}
         style={{ overflow: "auto" }}
