@@ -26,7 +26,7 @@ const Register = () => {
         });
         setLoading(false);
         setTimeout(() => {
-          window.location.href = "/";
+          window.history.back()
         }, 1200);
       } else if (
         response.data.message === "Username already exists. Choose another one."
