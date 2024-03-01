@@ -13,7 +13,7 @@ import Users from "./Users";
 
 function App() {
   /* eslint-disable no-unused-vars */
-  const appVersion = "v29.02.24.02";
+  const appVersion = "v01.03.24.02";
 
   return (
     <div style={{ height: "100vh", overflowX: "hidden" }}>
