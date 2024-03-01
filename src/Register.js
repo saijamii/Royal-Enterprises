@@ -26,7 +26,7 @@ const Register = () => {
         });
         setLoading(false);
         setTimeout(() => {
-          window.location.href = "/";
+          window.history.back()
         }, 1200);
       } else if (
         response.data.message === "Username already exists. Choose another one."
@@ -56,121 +56,120 @@ const Register = () => {
   return (
     <Col span={24}>
       <Row justify="center" align="middle" className="login-container">
-        
-          <Card
-            className="login-card"
-            style={{
-              boxShadow: "0 4px 8px 0 rgba(0, 0, 8, 0.2)",
-              backgroundColor: "#c7c8cc",
-              border: "transparent",
-            }}
+        <Card
+          className="login-card"
+          style={{
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 8, 0.2)",
+            backgroundColor: "#c7c8cc",
+            border: "transparent",
+          }}
+        >
+          {/* <h1 className="login-title">Create account</h1> */}
+          <Form
+            form={formSignUp}
+            onFinish={onFinish}
+            autoComplete="off"
+            className="login-form"
           >
-            {/* <h1 className="login-title">Create account</h1> */}
-            <Form
-              form={formSignUp}
-              onFinish={onFinish}
-              autoComplete="off"
-              className="login-form"
-            >
-              <Col>
-                <span>
-                  First Name<span style={{ color: "red" }}>*</span>
-                </span>
-                <Form.Item
-                  name="firstName"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your First Name!",
-                    },
-                  ]}
-                >
-                  <Input placeholder="First Name" className="form-input" />
-                </Form.Item>
-              </Col>
-
-              <Col>
-                <span>
-                  Last Name<span style={{ color: "red" }}>*</span>
-                </span>
-                <Form.Item
-                  name="lastName"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your Last Name!",
-                    },
-                  ]}
-                >
-                  <Input placeholder="Input Last Name" className="form-input" />
-                </Form.Item>
-              </Col>
-
-              <Col>
-                <span>
-                  Email<span style={{ color: "red" }}>*</span>
-                </span>
-                <Form.Item
-                  name="userId"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please Enter Your Email!",
-                    },
-                    {
-                      type: "email",
-                      message: "The Input Is Not Valid Email",
-                    },
-                  ]}
-                >
-                  <Input
-                    className="form-input"
-                    placeholder="Please Enter Your Email"
-                    prefix={<MailOutlined className="site-form-item-icon" />}
-                  />
-                </Form.Item>
-              </Col>
-
-              <Col>
-                <span className="title_changes ">
-                  Password<span style={{ color: "red" }}>*</span>
-                </span>
-
-                <Form.Item
-                  name="password"
-                  rules={[
-                    {
-                      required: true,
-                      pattern:
-                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%#^*?&+=_-])[A-Za-z\d$@$!%*?&]/,
-                      message:
-                        "At least one  upperCase letter, At least one number and one special character!",
-                    },
-                  ]}
-                  hasFeedback
-                >
-                  <Input.Password
-                    placeholder="Password"
-                    autoComplete="new-password"
-                    className="form-input"
-                    prefix={<LockOutlined className="site-form-item-icon" />}
-                  />
-                </Form.Item>
-              </Col>
-
-              <Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="login-form-button"
-                  loading={loading}
-                >
-                  Submit Details
-                </Button>
+            <Col>
+              <span>
+                First Name<span style={{ color: "red" }}>*</span>
+              </span>
+              <Form.Item
+                name="firstName"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your First Name!",
+                  },
+                ]}
+              >
+                <Input placeholder="First Name" className="form-input" />
               </Form.Item>
-            </Form>
-          </Card>
-         
+            </Col>
+
+            <Col>
+              <span>
+                Last Name<span style={{ color: "red" }}>*</span>
+              </span>
+              <Form.Item
+                name="lastName"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your Last Name!",
+                  },
+                ]}
+              >
+                <Input placeholder="Input Last Name" className="form-input" />
+              </Form.Item>
+            </Col>
+
+            <Col>
+              <span>
+                Email<span style={{ color: "red" }}>*</span>
+              </span>
+              <Form.Item
+                name="userId"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please Enter Your Email!",
+                  },
+                  {
+                    type: "email",
+                    message: "The Input Is Not Valid Email",
+                  },
+                ]}
+              >
+                <Input
+                  className="form-input"
+                  placeholder="Please Enter Your Email"
+                  prefix={<MailOutlined className="site-form-item-icon" />}
+                />
+              </Form.Item>
+            </Col>
+
+            <Col>
+              <span className="title_changes ">
+                Password<span style={{ color: "red" }}>*</span>
+              </span>
+
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    pattern:
+                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%#^*?&+=_-])[A-Za-z\d$@$!%*?&]/,
+                    message:
+                      "At least one  upperCase letter, At least one number and one special character!",
+                  },
+                ]}
+                hasFeedback
+              >
+                <Input.Password
+                  placeholder="Password"
+                  autoComplete="new-password"
+                  className="form-input"
+                  prefix={<LockOutlined className="site-form-item-icon" />}
+                />
+              </Form.Item>
+            </Col>
+
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="login-form-button"
+                loading={loading}
+              >
+                Submit Details
+              </Button>
+            </Form.Item>
+          </Form>
+        </Card>
+
         <Loading enableLoading={loading} />
       </Row>
     </Col>

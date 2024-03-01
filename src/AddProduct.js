@@ -206,64 +206,6 @@ export default function AddProduct() {
                   >
                     <div style={{ float: "right" }}>
                       <Row>
-                        {/* <Row>
-                                        <Popover
-                                          title={null}
-                                          content={
-                                            <p style={{ margin: "0px" }}>
-                                              A way to know if this is search
-                                              interface
-                                            </p>
-                                          }
-                                        >
-                                          <h1
-                                            style={{
-                                              fontSize: "18px",
-                                              color:
-                                                appConfig.app_colors.greyLight,
-                                              marginTop: "6px",
-                                              cursor: "pointer",
-                                            }}
-                                          >
-                                            <InfoCircleOutlined
-                                              style={{
-                                                color:
-                                                  appConfig.app_colors
-                                                    .yellowDark,
-                                              }}
-                                            />{" "}
-                                            <b>Discontinue</b>
-                                          </h1>
-                                        </Popover>
-
-                                        <Form.Item
-                                          name="discontinued"
-                                          initialValue={isDiscontinued}
-                                        >
-                                          <Switch
-                                            checkedChildren="Yes"
-                                            unCheckedChildren="No"
-                                            onChange={(value) =>
-                                              setIsDiscontinued(value)
-                                            }
-                                            checked={isDiscontinued}
-                                            style={{
-                                              backgroundColor: isDiscontinued
-                                                ? appConfig.app_colors
-                                                    .greenLight
-                                                : appConfig.app_colors
-                                                    .greyLight,
-                                              marginTop: "7px",
-                                              marginLeft: "10px",
-                                            }}
-                                          />
-                                        </Form.Item>
-                                      </Row>
-                                      <Divider
-                                        className="dividerVertical1"
-                                        type="vertical"
-                                        style={{ marginTop: "5px" }}
-                                      /> */}
                         <Button
                           type="default"
                           style={{

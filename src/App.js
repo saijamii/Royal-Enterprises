@@ -9,10 +9,12 @@ import Login from "./Login";
 import Landing from "./Landing";
 import Register from "./Register";
 import Users from "./Users";
-
 // const { Header } = Layout;
 
 function App() {
+  /* eslint-disable no-unused-vars */
+  const appVersion = "v29.02.24.02";
+
   return (
     <div style={{ height: "100vh", overflowX: "hidden" }}>
       <>
