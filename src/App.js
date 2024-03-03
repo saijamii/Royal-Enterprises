@@ -15,7 +15,7 @@ import { AppContext } from "./AppContext";
 function App() {
   /* eslint-disable no-unused-vars */
   const contextValue = {
-    appVersion: "v01.03.24.02",
+    appVersion: "v03.03.24.02",
   };
 
   return (
