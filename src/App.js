@@ -9,30 +9,35 @@ import Login from "./Login";
 import Landing from "./Landing";
 import Register from "./Register";
 import Users from "./Users";
+import { AppContext } from "./AppContext";
 // const { Header } = Layout;
 
 function App() {
   /* eslint-disable no-unused-vars */
-  const appVersion = "v29.02.24.02";
+  const contextValue = {
+    appVersion: "v01.03.24.02",
+  };
 
   return (
-    <div style={{ height: "100vh", overflowX: "hidden" }}>
-      <>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/inventory-mangement" element={<Landing />} />
-            <Route path="/signin" element={<Login />} />
-            <Route path="/signup" element={<Register />} />
-            <Route path="/home" element={<Application />} />
-            <Route path="/addProduct" element={<AddProduct />} />
-            <Route path="/getProductDetail/:id" element={<ProductDetail />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/addUser" element={<Register />} />
-          </Routes>
-        </Router>
-      </>
-    </div>
+    <AppContext.Provider value={contextValue}>
+      <div style={{ height: "100vh", overflowX: "hidden" }}>
+        <>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/inventory-mangement" element={<Landing />} />
+              <Route path="/signin" element={<Login />} />
+              <Route path="/signup" element={<Register />} />
+              <Route path="/home" element={<Application />} />
+              <Route path="/addProduct" element={<AddProduct />} />
+              <Route path="/getProductDetail/:id" element={<ProductDetail />} />
+              <Route path="/users" element={<Users />} />
+              <Route path="/addUser" element={<Register />} />
+            </Routes>
+          </Router>
+        </>
+      </div>
+    </AppContext.Provider>
   );
 }
 

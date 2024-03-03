@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Col,
   Row,
@@ -14,8 +14,11 @@ import b1 from "../src/Common/backvideo12.mp4";
 import "./login.css"; // Import your custom CSS for styling
 import { Header } from "antd/es/layout/layout";
 import axios from "axios";
+import { AppContext } from "./AppContext";
 
 function Landing() {
+  const context = useContext(AppContext);
+  console.log(context, "context");
   const [formSignIn] = Form.useForm();
   const [formSignUp] = Form.useForm();
   const { Content } = Layout;
