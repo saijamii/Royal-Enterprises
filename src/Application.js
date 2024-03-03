@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import {
   Table,
@@ -18,6 +18,7 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import Loading from "./Common/Loading";
+import { AppContext } from "./AppContext";
 
 export default function Application() {
   const { Header, Sider, Content } = Layout;
@@ -25,6 +26,9 @@ export default function Application() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
+
+  const context = useContext(AppContext);
+  console.log(context, "context");
 
   useEffect(() => {
     token && getInventoryData();
