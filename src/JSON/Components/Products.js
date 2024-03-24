@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import Loading from "../../Common/Loading";
 
-export default function Moives() {
+export default function Products() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
@@ -266,7 +266,7 @@ export default function Moives() {
   };
 
   return (
-    <div style={{ marginTop: "80px" }}>
+    <div style={{ marginTop: "50px" }}>
       <Col span={24} className="fireFox">
         <Row justify="space-between" gutter={[16, 16]}>
           <Col span={12}>
@@ -278,7 +278,7 @@ export default function Moives() {
                     marginLeft: "10px",
                   }}
                 >
-                  USERS{" "}
+                  Products{" "}
                   <span style={{ fontSize: "20px", color: "#fe6101" }}>
                     ({users.length})
                   </span>

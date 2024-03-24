@@ -4,15 +4,15 @@ import Register from "../Register";
 import AddProduct from "../AddProduct";
 import ProductDetail from "../ProductDetail";
 import Users from "../Users";
-import Moives from "../JSON/Components/Moives";
+import Products from "../JSON/Components/Products";
 
 const AppRoutes = [
   {
     key: "1",
     exact: true,
     path: "/home",
-    component: Moives,
-    title: "Moives",
+    component: Products,
+    title: "Products",
     icon: <AppstoreFilled />,
     isShowItem: true,
   },
