@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import WithAuth from "./WithAuth";
 import Application from "../Application";
-import Login from "../Login";
+import Landing from "./Landing";
 
 const Authenticated = () => {
   const location = useLocation();
@@ -14,14 +14,13 @@ const Authenticated = () => {
         // marginBottom: "10vw",
       }}
     >
-      {location.pathname !== "/login" &&
-      location.pathname !== "*" &&
+      {location.pathname !== "*" &&
       location.pathname !== "/" &&
       location.pathname !== "" ? (
         <Application />
       ) : (
         <Routes>
-          <Route path="*" element={<Login />} />
+          <Route path="*" element={<Landing />} />
         </Routes>
       )}
     </div>
