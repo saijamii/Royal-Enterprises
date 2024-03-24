@@ -10,6 +10,7 @@ import {
   Input,
   notification,
 } from "antd";
+import { Routes, Route } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import {
   EllipsisOutlined,
@@ -19,9 +20,25 @@ import {
 import { Link } from "react-router-dom";
 import Loading from "./Common/Loading";
 import { AppContext } from "./AppContext";
+import SiderMenu from "./Common/SiderMenu";
+import CommonHeader from "./Common/CommonHeader";
+import AppRoutes from "./Config/AppRoutes";
 
 export default function Application() {
-  const { Header, Sider, Content } = Layout;
+  const [menuVisable, setMenuVisable] = useState(false);
+  const [activeMenu, setActiveMenu] = useState("Home");
+
+  const siderClosed = () => {
+    setMenuVisable(false);
+  };
+  const siderOpened = () => {
+    setMenuVisable(true);
+  };
+  const handleMenuItemClick = (menuItem) => {
+    setActiveMenu(menuItem);
+  };
+
+  const { Header, Content } = Layout;
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
@@ -53,14 +70,6 @@ export default function Application() {
     paddingInline: 48,
     lineHeight: "64px",
     backgroundColor: "#4096ff",
-  };
-
-  const siderStyle = {
-    textAlign: "center",
-    lineHeight: "120px",
-    color: "#fff",
-    backgroundColor: "#1677ff",
-    height: "100vh",
   };
 
   const handleDeleteProduct = async (id) => {
@@ -319,106 +328,54 @@ export default function Application() {
   };
 
   return (
-    <Layout>
-      <Sider style={siderStyle} width="10%">
-        <Menu
-          className="sider-menu"
-          mode="inline"
-          style={{ position: "relative", height: "100%" }}
+    <Layout hasSider>
+      <SiderMenu
+        className="show-on-desktop"
+        siderOpened={siderOpened}
+        siderClosed={siderClosed}
+        menuVisable={menuVisable}
+        onMenuItemClick={handleMenuItemClick}
+      />
+      <Header
+          className="app-hed topheight"
+          style={{
+            position: "fixed",
+            width: "100%",
+            zIndex: "1",
+            backgroundColor: "white",
+          }}
         >
-          <Menu.Item key="1" style={{ marginLeft: "0px", color: "white" }}>
-            <Link to="/home" title="Dashboard">
-              <span></span>
-            </Link>
-            Products
-          </Menu.Item>
-          <Menu.Item key="2" style={{ marginLeft: "0px", color: "white" }}>
-            <Link to="/users" title="Dashboard">
-              <span></span>
-            </Link>
-            Users
-          </Menu.Item>
-        </Menu>
-      </Sider>
-      <Layout>
-        <Header style={headerStyle}>Header</Header>
-        <Content style={{ height: "100%" }}>
-          <div>
-            <Col span={24} className="fireFox">
-              <Row justify="space-between" gutter={[16, 16]}>
-                <Col span={12}>
-                  <div>
-                    <>
-                      <h2
-                        style={{
-                          fontSize: "30px",
-                          marginLeft: "10px",
-                        }}
-                      >
-                        Products{" "}
-                        <span style={{ fontSize: "20px", color: "#fe6101" }}>
-                          ({users.length})
-                        </span>
-                      </h2>
-                    </>
-                  </div>
-                </Col>
-
-                <Col span={12}>
-                  <Row gutter={[16, 16]} justify="end">
-                    <Col>
-                      <Input
-                        style={{ marginTop: "25px" }}
-                        placeholder="Search..."
-                        onChange={(e) => {
-                          setSearch(e.target.value);
-                        }}
+          <CommonHeader
+            activeMenu={activeMenu}
+            siderOpened={siderOpened}
+            siderClosed={siderClosed}
+            menuVisable={menuVisable}
+          />
+        </Header>
+        <Content className="mainlayout">
+          <div className="app-div">
+            <Layout
+              style={{
+                minHeight: "90vh",
+                overflowX: "hidden",
+                marginTop: "10vh",
+              }}
+            >
+              <Routes>
+                {AppRoutes?.map(
+                  (item) =>
+                    item.title && (
+                      <Route
+                        path={item.path}
+                        key={item.key}
+                        element={<item.component />}
                       />
-                    </Col>
-                    <Col>
-                      <Button
-                        style={{
-                          minWidth: "160px",
-                          borderRadius: "6px",
-                          float: "right",
-                          height: "36px",
-                          marginRight: "12px",
-                          marginTop: "22px",
-                          backgroundColor: "#0050b3",
-                          color: "#fff",
-                          border: "#fe6101",
-                        }}
-                        onClick={() => (window.location.href = "/addProduct")}
-                      >
-                        <PlusOutlined />
-                        Add Product
-                      </Button>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-            </Col>
-            <Table
-              dataSource={
-                search.length > 0
-                  ? users.filter(
-                      (e) =>
-                        e.firstName?.indexOf(search) > -1 ||
-                        e.firstName?.toUpperCase()?.indexOf(search) > -1 ||
-                        e.firstName?.toLowerCase()?.indexOf(search) > -1 ||
-                        e.lastName?.indexOf(search) > -1 ||
-                        e.lastName?.toUpperCase()?.indexOf(search) > -1 ||
-                        e.lastName?.toLowerCase()?.indexOf(search) > -1
                     )
-                  : users
-              }
-              columns={moiveColumns}
-              style={{ overflow: "auto" }}
-            />
-            <Loading enableLoading={loading} />
+                )}
+              </Routes>
+            </Layout>
           </div>
         </Content>
-      </Layout>
     </Layout>
   );
 }
