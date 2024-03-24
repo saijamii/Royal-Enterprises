@@ -6,8 +6,9 @@ const WithAuth = (WrappedComponent) => {
     const location = useLocation();
     // const token = true;
     const token = localStorage.getItem("JWT");
+    console.log(token, "token");
 
-    return token || location.pathname === "/" ? (
+    return token !== null || location.pathname === "/" ? (
       <WrappedComponent {...props} />
     ) : (
       <Navigate to="/" />

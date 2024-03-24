@@ -53,7 +53,6 @@ export default function Application() {
           />
         </Header>
         <Content className="mainlayout">
-          style={{ height: "100%" }}
           <Layout
             style={{
               minHeight: "100vh",
