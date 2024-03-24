@@ -194,8 +194,6 @@
   justify-content: center !important;
 }
 
-
-
 .App {
   text-align: center;
 }
@@ -382,7 +380,6 @@
   margin-right: 100px;
 }
 
-
 .App {
   text-align: center;
 }
@@ -530,9 +527,9 @@
   overflow: hidden;
   z-index: 1;
   transition: color 150ms ease-in-out;
-  
+
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     display: block;
     top: 0;
@@ -545,7 +542,7 @@
     color: white;
     transition: width 150ms ease-in-out;
   }
-  
+
   &:hover {
     color: #fff;
     &:after {

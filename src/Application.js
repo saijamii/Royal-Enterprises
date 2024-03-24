@@ -53,28 +53,26 @@ export default function Application() {
           />
         </Header>
         <Content className="mainlayout">
-          <div className="app-div">
-            <Layout
-              style={{
-                minHeight: "90vh",
-                overflowX: "hidden",
-                marginTop: "10vh",
-              }}
-            >
-              <Routes>
-                {AppRoutes?.map(
-                  (item) =>
-                    item.title && (
-                      <Route
-                        path={item.path}
-                        key={item.key}
-                        element={<item.component />}
-                      />
-                    )
-                )}
-              </Routes>
-            </Layout>
-          </div>
+          style={{ height: "100%" }}
+          <Layout
+            style={{
+              minHeight: "100vh",
+              overflowX: "hidden",
+            }}
+          >
+            <Routes>
+              {AppRoutes?.map(
+                (item) =>
+                  item.title && (
+                    <Route
+                      path={item.path}
+                      key={item.key}
+                      element={<item.component />}
+                    />
+                  )
+              )}
+            </Routes>
+          </Layout>
         </Content>
       </Layout>
     </Layout>
