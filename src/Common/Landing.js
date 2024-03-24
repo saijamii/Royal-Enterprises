@@ -10,11 +10,11 @@ import {
   Input,
 } from "antd";
 import { LockOutlined, HomeOutlined, MailOutlined } from "@ant-design/icons";
-import b1 from "../src/Common/backvideo12.mp4";
-import "./login.css"; // Import your custom CSS for styling
+import b1 from "./backvideo12.mp4";
+import "../login.css"; // Import your custom CSS for styling
 import { Header } from "antd/es/layout/layout";
 import axios from "axios";
-import { AppContext } from "./AppContext";
+import { AppContext } from "../AppContext";
 
 function Landing() {
   const context = useContext(AppContext);
