@@ -336,7 +336,8 @@ export default function Application() {
         menuVisable={menuVisable}
         onMenuItemClick={handleMenuItemClick}
       />
-      <Header
+      <Layout>
+        <Header
           className="app-hed topheight"
           style={{
             position: "fixed",
@@ -376,6 +377,7 @@ export default function Application() {
             </Layout>
           </div>
         </Content>
+      </Layout>
     </Layout>
   );
 }
