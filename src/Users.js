@@ -8,7 +8,7 @@ function Users() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("JWT");
 
   useEffect(() => {
     getUsers();

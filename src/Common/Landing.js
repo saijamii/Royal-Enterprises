@@ -40,7 +40,7 @@ function Landing() {
           message: "Sign in successful!",
         });
         const jwt = response.data.token;
-        localStorage.setItem("jwt", jwt);
+        localStorage.setItem("JWT",jwt);
         console.log(jwt, "jwt");
         setTimeout(() => {
           window.location.href = "/home";

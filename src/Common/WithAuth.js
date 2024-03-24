@@ -5,7 +5,7 @@ const WithAuth = (WrappedComponent) => {
   const Authenticated = (props) => {
     const location = useLocation();
     // const token = true;
-    const token = localStorage.getItem("jwt");
+    const token = localStorage.getItem("JWT");
 
     return token || location.pathname === "/" ? (
       <WrappedComponent {...props} />
