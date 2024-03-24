@@ -15,7 +15,9 @@ export default function Moives() {
 
   useEffect(() => {
     getInventoryData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const token = localStorage.getItem("JWT");
 
   const handleDeleteProduct = async (id) => {
     try {
@@ -34,7 +36,12 @@ export default function Moives() {
     try {
       setLoading(true);
       const response = await axios.delete(
-        `https://node-kl1g.onrender.com/deleteProduct/${id}`
+        `https://node-kl1g.onrender.com/deleteProduct/${id}`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
       );
       console.log(response, "response");
       if (response.data.message === "User Deleted Successfully") {
@@ -242,7 +249,12 @@ export default function Moives() {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        "https://node-kl1g.onrender.com/inventoryProducts"
+        "https://node-kl1g.onrender.com/inventoryProducts",
+        {
+          headers: {
+            authorization: token,
+          },
+        }
       );
       setUsers(data);
       setLoading(false);
