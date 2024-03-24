@@ -1,5 +1,5 @@
 import { AppstoreFilled } from "@ant-design/icons";
-import Login from "../Login";
+
 import Register from "../Register";
 import AddProduct from "../AddProduct";
 import ProductDetail from "../ProductDetail";
@@ -7,10 +7,8 @@ import Users from "../Users";
 import Moives from "../JSON/Components/Moives";
 
 const AppRoutes = [
-  { key: "1", exact: true, path: "/signin", component: Login },
-  { key: "2", exact: true, path: "/signup", component: Register },
   {
-    key: "3",
+    key: "1",
     exact: true,
     path: "/home",
     component: Moives,
@@ -19,7 +17,7 @@ const AppRoutes = [
     isShowItem: true,
   },
   {
-    key: "4",
+    key: "2",
     exact: true,
     path: "/addProduct",
     component: AddProduct,
@@ -28,7 +26,7 @@ const AppRoutes = [
     isShowItem: true,
   },
   {
-    key: "5",
+    key: "3",
     exact: true,
     path: "/getProductDetail/:id",
     component: ProductDetail,
@@ -37,7 +35,7 @@ const AppRoutes = [
     isShowItem: true,
   },
   {
-    key: "6",
+    key: "4",
     exact: true,
     path: "/users",
     component: Users,
@@ -46,7 +44,7 @@ const AppRoutes = [
     isShowItem: true,
   },
   {
-    key: "7",
+    key: "5",
     exact: true,
     path: "/addUser",
     component: Register,

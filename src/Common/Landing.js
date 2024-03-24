@@ -39,9 +39,9 @@ function Landing() {
           placement: "top",
           message: "Sign in successful!",
         });
-        const token = response.data.token;
-        localStorage.setItem("token", token);
-        console.log(token, "token");
+        const jwt = response.data.token;
+        localStorage.setItem("jwt", jwt);
+        console.log(jwt, "jwt");
         setTimeout(() => {
           window.location.href = "/home";
         }, 1200);
