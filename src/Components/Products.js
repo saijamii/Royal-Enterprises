@@ -6,7 +6,7 @@ import {
   DeleteOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
-import Loading from "../../Common/Loading";
+import Loading from "../Common/Loading";
 
 export default function Products() {
   const [users, setUsers] = useState([]);
