@@ -191,6 +191,7 @@
 }
 .please-wait {
   display: flex;
+  justify-items: center;
   justify-content: center !important;
 }
 
