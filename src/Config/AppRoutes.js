@@ -4,7 +4,7 @@ import Register from "../Register";
 import AddProduct from "../AddProduct";
 import ProductDetail from "../ProductDetail";
 import Users from "../Users";
-import Products from "../JSON/Components/Products";
+import Products from "../Components/Products"
 
 const AppRoutes = [
   {
