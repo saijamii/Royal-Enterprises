@@ -32,7 +32,7 @@ const AppRoutes = [
     component: ProductDetail,
     title: "ProductDetail",
     icon: <AppstoreFilled />,
-    isShowItem: true,
+    isShowItem: false,
   },
   {
     key: "4",
