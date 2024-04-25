@@ -7,7 +7,7 @@ const Loading = (props) => {
   return (
     <Drawer
       className="background-transparent"
-      open={!enableLoading}
+      open={enableLoading}
       closable={false}
     >
       <div className="loading-div">
