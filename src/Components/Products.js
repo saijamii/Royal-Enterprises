@@ -30,7 +30,6 @@ export default function Products() {
       console.error("There was an error!", error);
     }
   };
-
   const handleDeleteMoiveRecord = async (id) => {
     console.log(id, "id");
     try {
@@ -265,6 +264,48 @@ export default function Products() {
     }
   };
 
+  const columns = [
+    {
+      title: "SKU#",
+      dataIndex: "productNumber",
+    },
+    {
+      title: "PRODUCT NAME",
+      dataIndex: "productName",
+    },
+    {
+      title: "BRAND",
+      dataIndex: "manufacturerName",
+    },
+    {
+      title: "MFR STOCK",
+      dataIndex: "manufacturerStock",
+    },
+    {
+      title: "CATEGORIES",
+      dataIndex: "LACategory",
+    },
+    {
+      title: "COST",
+      dataIndex: "regularCost",
+    },
+    {
+      title: "PRICE",
+      dataIndex: "regularPrice",
+    },
+    {
+      title: "QTY",
+      dataIndex: "storageData",
+      render: (storageData) => {
+        let qty = 0;
+        Array.isArray(storageData) &&
+          storageData?.length > 0 &&
+          storageData?.map((s) => (qty = qty + parseInt(s?.qty)));
+        return qty;
+      },
+    },
+  ];
+
   return (
     <div style={{ marginTop: "50px" }}>
       <Col span={24} className="fireFox">
@@ -335,7 +376,7 @@ export default function Products() {
               )
             : users
         }
-        columns={moiveColumns}
+        columns={columns}
         style={{ overflow: "auto" }}
       />
       <Loading enableLoading={loading} />
