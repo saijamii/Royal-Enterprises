@@ -7,16 +7,20 @@ const Loading = (props) => {
   return (
     <Drawer
       className="background-transparent"
-      visible={enableLoading}
+      open={enableLoading}
       closable={false}
-      placement="top"
-      width="100%"
-      height="100%"
-      size="large"
     >
       <div className="loading-div">
-        <Lottie animationData={loading} />
-        <h1 className="please-wait">Loading...</h1>
+        <Lottie
+          animationData={loading}
+          style={{
+            justifyContent: "center",
+            display: "flex",
+          }}
+        />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <h1 className="please-wait">Please wait...</h1>
+        </div>
       </div>
     </Drawer>
   );
