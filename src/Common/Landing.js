@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Col,
   Row,
@@ -26,6 +26,10 @@ function Landing() {
   const [signup, setSignUp] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   const onFinishSignIn = async (values) => {
     try {
       setLoading(true);
@@ -40,7 +44,7 @@ function Landing() {
           message: "Sign in successful!",
         });
         const jwt = response.data.token;
-        localStorage.setItem("JWT",jwt);
+        localStorage.setItem("JWT", jwt);
         console.log(jwt, "jwt");
         setTimeout(() => {
           window.location.href = "/home";
