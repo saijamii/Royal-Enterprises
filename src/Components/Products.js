@@ -10,6 +10,7 @@ import Loading from "../Common/Loading";
 
 export default function Products() {
   const [products, setproducts] = useState([]);
+  console.log(products, "products");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -196,6 +197,12 @@ export default function Products() {
     {
       title: "SKU#",
       dataIndex: "productNumber",
+      onCell: (record) => ({
+        onClick: () => {},
+        onDoubleClick: () => {
+          window.location.href = `/getProductDetail/${record?._id}`;
+        },
+      }),
     },
     {
       title: "PRODUCT NAME",
@@ -301,7 +308,7 @@ export default function Products() {
                   style={{ marginTop: "25px" }}
                   placeholder="Search..."
                   onChange={(e) => {
-                    setSearch(e.target.value);
+                    setSearch(e.target.value.trim());
                   }}
                 />
               </Col>
@@ -333,17 +340,15 @@ export default function Products() {
           search.length > 0
             ? products.filter(
                 (e) =>
-                  e.firstName?.indexOf(search) > -1 ||
-                  e.firstName?.toUpperCase()?.indexOf(search) > -1 ||
-                  e.firstName?.toLowerCase()?.indexOf(search) > -1 ||
-                  e.lastName?.indexOf(search) > -1 ||
-                  e.lastName?.toUpperCase()?.indexOf(search) > -1 ||
-                  e.lastName?.toLowerCase()?.indexOf(search) > -1
+                  e?.productNumber &&
+                  typeof e.productNumber === "string" &&
+                  e.productNumber.toLowerCase().indexOf(search?.toLowerCase()) >
+                    -1
               )
             : products
         }
         columns={columns}
-        style={{ overflow: "auto" }}
+        style={{ overflow: "auto", cursor: "pointer" }}
       />
       <Loading enableLoading={loading} />
     </div>
