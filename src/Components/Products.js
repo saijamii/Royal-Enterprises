@@ -9,7 +9,7 @@ import {
 import Loading from "../Common/Loading";
 
 export default function Products() {
-  const [users, setUsers] = useState([]);
+  const [products, setproducts] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -172,22 +172,64 @@ export default function Products() {
 
   console.log(colums);
 
-  const moiveColumns = [
+  const getInventoryData = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(
+        "https://node-kl1g.onrender.com/inventoryProducts",
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      setproducts(data);
+      setLoading(false);
+      console.log(data, "data");
+    } catch (error) {
+      console.error("Error fetching inventory data:", error);
+      setLoading(false);
+    }
+  };
+
+  const columns = [
     {
-      title: "movie",
-      dataIndex: "movie",
+      title: "SKU#",
+      dataIndex: "productNumber",
     },
     {
-      title: "title",
-      dataIndex: "title",
+      title: "PRODUCT NAME",
+      dataIndex: "productName",
     },
     {
-      title: "genres",
-      dataIndex: "genres",
+      title: "BRAND",
+      dataIndex: "manufacturerName",
     },
     {
-      title: "year",
-      dataIndex: "year",
+      title: "MFR STOCK",
+      dataIndex: "manufacturerStock",
+    },
+    {
+      title: "CATEGORIES",
+      dataIndex: "LACategory",
+    },
+    {
+      title: "QTY",
+      dataIndex: "qty",
+    },
+    {
+      title: "COST",
+      dataIndex: "regularCost",
+      render: (regularCost) => {
+        return <div>${parseFloat(regularCost)}</div>;
+      },
+    },
+    {
+      title: "PRICE",
+      dataIndex: "regularPrice",
+      render: (regularPrice) => {
+        return <div>${parseFloat(regularPrice)}</div>;
+      },
     },
     {
       width: "60px",
@@ -220,88 +262,12 @@ export default function Products() {
                     </Popconfirm>
                   </Button>
                 </Col>
-                {/* <Col span={24}>
-                  <Button
-                    className="popoveroptions"
-                    style={{
-                      backgroundColor: "green",
-                      color: "#fff",
-                      width: "90px",
-                    }}
-                  >
-                    <span>
-                      <DeleteOutlined className="mddelete" /> Edit
-                    </span>
-                  </Button>
-                </Col> */}
               </Row>
             }
           >
             <EllipsisOutlined style={{ fontSize: "25px", cursor: "pointer" }} />
           </Popover>
         );
-      },
-    },
-  ];
-
-  const getInventoryData = async () => {
-    try {
-      setLoading(true);
-      const { data } = await axios.get(
-        "https://node-kl1g.onrender.com/inventoryProducts",
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
-      setUsers(data);
-      setLoading(false);
-      console.log(data, "data");
-    } catch (error) {
-      console.error("Error fetching inventory data:", error);
-      setLoading(false);
-    }
-  };
-
-  const columns = [
-    {
-      title: "SKU#",
-      dataIndex: "productNumber",
-    },
-    {
-      title: "PRODUCT NAME",
-      dataIndex: "productName",
-    },
-    {
-      title: "BRAND",
-      dataIndex: "manufacturerName",
-    },
-    {
-      title: "MFR STOCK",
-      dataIndex: "manufacturerStock",
-    },
-    {
-      title: "CATEGORIES",
-      dataIndex: "LACategory",
-    },
-    {
-      title: "COST",
-      dataIndex: "regularCost",
-    },
-    {
-      title: "PRICE",
-      dataIndex: "regularPrice",
-    },
-    {
-      title: "QTY",
-      dataIndex: "storageData",
-      render: (storageData) => {
-        let qty = 0;
-        Array.isArray(storageData) &&
-          storageData?.length > 0 &&
-          storageData?.map((s) => (qty = qty + parseInt(s?.qty)));
-        return qty;
       },
     },
   ];
@@ -321,7 +287,7 @@ export default function Products() {
                 >
                   Products{" "}
                   <span style={{ fontSize: "20px", color: "#fe6101" }}>
-                    ({users.length})
+                    ({products.length})
                   </span>
                 </h2>
               </>
@@ -365,7 +331,7 @@ export default function Products() {
       <Table
         dataSource={
           search.length > 0
-            ? users.filter(
+            ? products.filter(
                 (e) =>
                   e.firstName?.indexOf(search) > -1 ||
                   e.firstName?.toUpperCase()?.indexOf(search) > -1 ||
@@ -374,7 +340,7 @@ export default function Products() {
                   e.lastName?.toUpperCase()?.indexOf(search) > -1 ||
                   e.lastName?.toLowerCase()?.indexOf(search) > -1
               )
-            : users
+            : products
         }
         columns={columns}
         style={{ overflow: "auto" }}
