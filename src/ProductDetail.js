@@ -5,6 +5,7 @@ import axios from "axios";
 import Loading from "./Common/Loading";
 
 export default function ProductDetail(props) {
+  const token = localStorage.getItem("JWT");
   console.log(props, "props");
   const [product, setProduct] = useState({});
   const [user, setUser] = useState({});
@@ -20,7 +21,12 @@ export default function ProductDetail(props) {
         const response = await axios.get(
           `https://node-kl1g.onrender.com/getProductDetail/${
             window.location.pathname.split("/")[2]
-          }`
+          }`,
+          {
+            headers: {
+              authorization: token,
+            },
+          }
         );
         setProduct(response.data);
         setUser(response.data);
