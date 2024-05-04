@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import { Link, useLocation } from "react-router-dom";
 import AppRoutes from "../Config/AppRoutes";
-import appConfig from "../Config/AppConfig"
+import appConfig from "../Config/AppConfig";
 const { Sider } = Layout;
 function SiderMenu({ siderClosed, onMenuItemClick }) {
   const location = useLocation();
@@ -46,7 +46,15 @@ function SiderMenu({ siderClosed, onMenuItemClick }) {
         )}
         {!collapsed && (
           <div className="siderVersion">
-            <b>{appConfig.appVersion}</b>
+            <b
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "40vw",
+              }}
+            >
+              {appConfig.appVersion}
+            </b>
           </div>
         )}
       </Menu>
