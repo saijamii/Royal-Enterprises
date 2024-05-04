@@ -15,6 +15,7 @@ import "../login.css"; // Import your custom CSS for styling
 import { Header } from "antd/es/layout/layout";
 import axios from "axios";
 import { AppContext } from "../AppContext";
+import appConfig from "../Config/AppConfig";
 
 function Landing() {
   const context = useContext(AppContext);
@@ -255,19 +256,9 @@ function Landing() {
                         Login
                       </Button>
                     </Form.Item>
-                    Don't have an account?{" "}
-                    <span
-                      style={{
-                        cursor: "pointer",
-                        color: "#4f46e5",
-                      }}
-                      onClick={() => {
-                        formSignIn.resetFields();
-                        setSignIn(false);
-                        // setSignUp(true);
-                      }}
-                    >
-                      Signup
+
+                    <span style={{ display: "flex",  justifyContent: "center" }}>
+                      {appConfig.appVersion}
                     </span>
                   </Form>
                 </Card>
