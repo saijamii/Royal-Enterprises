@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Row, Col, Button, Input, Popover, Popconfirm } from "antd";
+import {
+  Table,
+  Row,
+  Col,
+  Button,
+  Input,
+  Popover,
+  Popconfirm,
+  notification,
+} from "antd";
 import {
   EllipsisOutlined,
   DeleteOutlined,
@@ -41,7 +50,7 @@ function Users() {
     try {
       setLoading(true);
       const response = await axios.delete(
-        `https://node-kl1g.onrender.com/deleteProduct/${id}`,
+        `https://node-kl1g.onrender.com/deleteUser/${id}`,
         {
           headers: {
             authorization: token,
@@ -50,16 +59,25 @@ function Users() {
       );
       console.log(response, "response");
       if (response.data.message === "User Deleted Successfully") {
-        alert("Delete successful");
+        notification.success({
+          placement: "top",
+          message: "User Deleted successful!",
+        });
         setLoading(false);
         getUsers();
       } else {
-        alert("Something went wrong: " + response.data.message);
+        notification.error({
+          placement: "top",
+          message: `Something went wrong: ${response.data.message}`,
+        });
         setLoading(false);
       }
     } catch (error) {
       setLoading(false);
-      alert("Something went wrong");
+      notification.error({
+        placement: "top",
+        message: `There was an error!`,
+      });
       console.error("There was an error!", error);
     }
   };
