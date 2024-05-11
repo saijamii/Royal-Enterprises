@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Row, Col, Button, Input } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { Table, Row, Col, Button, Input, Popover, Popconfirm } from "antd";
+import {
+  EllipsisOutlined,
+  DeleteOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
 import Loading from "./Common/Loading";
 
 function Users() {
@@ -29,6 +33,34 @@ function Users() {
     } catch (error) {
       console.error("Error fetching Users:", error);
       setLoading(false);
+    }
+  };
+
+  const handleDeleteUser = async (id) => {
+    console.log(id, "id");
+    try {
+      setLoading(true);
+      const response = await axios.delete(
+        `https://node-kl1g.onrender.com/deleteProduct/${id}`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      console.log(response, "response");
+      if (response.data.message === "User Deleted Successfully") {
+        alert("Delete successful");
+        setLoading(false);
+        getUsers();
+      } else {
+        alert("Something went wrong: " + response.data.message);
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      alert("Something went wrong");
+      console.error("There was an error!", error);
     }
   };
 
@@ -115,10 +147,51 @@ function Users() {
             title: "PHONE",
             dataIndex: "phone",
           },
-
           {
             title: "EMAIL",
             dataIndex: "userId",
+          },
+
+          {
+            width: "60px",
+            dataIndex: "_id",
+            key: "_id",
+            render: (_id) => {
+              return (
+                <Popover
+                  placement="left"
+                  trigger="hover"
+                  content={
+                    <Row className="popovergrid">
+                      <Col span={24}>
+                        <Button
+                          className="popoveroptions"
+                          style={{ backgroundColor: "red", color: "#fff" }}
+                        >
+                          <Popconfirm
+                            title="Are you sure？"
+                            okText="Yes"
+                            cancelText="No"
+                            showArrow={true}
+                            onConfirm={() => {
+                              handleDeleteUser(_id);
+                            }}
+                          >
+                            <span>
+                              <DeleteOutlined className="mddelete" /> Delete
+                            </span>
+                          </Popconfirm>
+                        </Button>
+                      </Col>
+                    </Row>
+                  }
+                >
+                  <EllipsisOutlined
+                    style={{ fontSize: "25px", cursor: "pointer" }}
+                  />
+                </Popover>
+              );
+            },
           },
         ]}
         style={{ overflow: "auto" }}
