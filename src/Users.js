@@ -64,6 +64,65 @@ function Users() {
     }
   };
 
+  const columns = [
+    {
+      title: "FIRST NAME",
+      dataIndex: "firstName",
+    },
+    {
+      title: "LAST NAME",
+      dataIndex: "lastName",
+    },
+    {
+      title: "PHONE",
+      dataIndex: "phone",
+    },
+    {
+      title: "EMAIL",
+      dataIndex: "userId",
+    },
+
+    {
+      width: "60px",
+      dataIndex: "_id",
+      key: "_id",
+      render: (_id) => {
+        return (
+          <Popover
+            placement="left"
+            trigger="hover"
+            content={
+              <Row className="popovergrid">
+                <Col span={24}>
+                  <Button
+                    className="popoveroptions"
+                    style={{ backgroundColor: "red", color: "#fff" }}
+                  >
+                    <Popconfirm
+                      title="Are you sure？"
+                      okText="Yes"
+                      cancelText="No"
+                      showArrow={true}
+                      onConfirm={() => {
+                        handleDeleteUser(_id);
+                      }}
+                    >
+                      <span>
+                        <DeleteOutlined className="mddelete" /> Delete
+                      </span>
+                    </Popconfirm>
+                  </Button>
+                </Col>
+              </Row>
+            }
+          >
+            <EllipsisOutlined style={{ fontSize: "25px", cursor: "pointer" }} />
+          </Popover>
+        );
+      },
+    },
+  ];
+
   return (
     <div style={{ marginTop: "80px" }}>
       <Col span={24} className="fireFox">
@@ -134,66 +193,7 @@ function Users() {
               )
             : users
         }
-        columns={[
-          {
-            title: "FIRST NAME",
-            dataIndex: "firstName",
-          },
-          {
-            title: "LAST NAME",
-            dataIndex: "lastName",
-          },
-          {
-            title: "PHONE",
-            dataIndex: "phone",
-          },
-          {
-            title: "EMAIL",
-            dataIndex: "userId",
-          },
-
-          {
-            width: "60px",
-            dataIndex: "_id",
-            key: "_id",
-            render: (_id) => {
-              return (
-                <Popover
-                  placement="left"
-                  trigger="hover"
-                  content={
-                    <Row className="popovergrid">
-                      <Col span={24}>
-                        <Button
-                          className="popoveroptions"
-                          style={{ backgroundColor: "red", color: "#fff" }}
-                        >
-                          <Popconfirm
-                            title="Are you sure？"
-                            okText="Yes"
-                            cancelText="No"
-                            showArrow={true}
-                            onConfirm={() => {
-                              handleDeleteUser(_id);
-                            }}
-                          >
-                            <span>
-                              <DeleteOutlined className="mddelete" /> Delete
-                            </span>
-                          </Popconfirm>
-                        </Button>
-                      </Col>
-                    </Row>
-                  }
-                >
-                  <EllipsisOutlined
-                    style={{ fontSize: "25px", cursor: "pointer" }}
-                  />
-                </Popover>
-              );
-            },
-          },
-        ]}
+        columns={columns}
         style={{ overflow: "auto" }}
       />
       <Loading enableLoading={loading} />
