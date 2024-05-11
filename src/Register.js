@@ -25,9 +25,7 @@ const Register = () => {
           message: "User created successful!",
         });
         setLoading(false);
-        setTimeout(() => {
-          window.history.back()
-        }, 1200);
+        formSignUp.resetFields();
       } else if (
         response.data.message === "Username already exists. Choose another one."
       ) {
